@@ -1,18 +1,11 @@
 package Controler;
 
-import java.util.Scanner;
-
-import javax.naming.spi.ObjectFactory;
-
-import Items.Box;
-import Items.Character;
-import Items.Destination;
-import Items.Floor;
-import Items.Item;
-import Items.Position;
-import Items.Wall;
-import RunSource.MySokobanPolicy;
-import levels.Level;
+import Model.Box;
+import Model.Item;
+import Model.Level;
+import Model.MySokobanPolicy;
+import Model.Position;
+import Model.Wall;
 
 public class MoveCommand extends FunctionalCommand implements Command {
 

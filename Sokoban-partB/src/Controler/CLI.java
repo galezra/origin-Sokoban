@@ -1,18 +1,8 @@
 package Controler;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Scanner;
 
-import LoadAndSave.MyTextLevelLoader;
-import LoadAndSave.MyXMLLevelLoader;
-import commands.CommandCreator;
-import commands.CommandsFactory;
-import commands.FunctionalCommand;
-import commands.CommandsFactory.DisplayLevelCommandCreator;
-import levels.Level;
+import Model.Level;
 
 public class CLI {
 	Level MyLevel;

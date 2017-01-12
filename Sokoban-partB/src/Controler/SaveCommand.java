@@ -1,14 +1,13 @@
 package Controler;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Scanner;
 
-import LoadAndSave.LevelSaver;
-import LoadAndSave.LevelSaverCreator;
-import LoadAndSave.LevelSaverFactory;
-import levels.Level;
+import Model.Level;
+import View.LevelSaver;
+import View.LevelSaverCreator;
+import View.LevelSaverFactory;
 
 public class SaveCommand extends FunctionalCommand implements Command {
 
