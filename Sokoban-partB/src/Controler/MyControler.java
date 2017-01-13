@@ -1,15 +1,32 @@
 package Controler;
 
 import java.util.Observable;
-import Model.MyModel;
-import View.MyView;
+
+
 
 public class MyControler implements ControlerInterface {
-	MyView MV;
-	MyModel MM;
+	Observable  MV;
+	Observable MM;
+
+	public Observable getMV() {
+		return MV;
+	}
+
+	public void setMV(Observable mV) {
+		MV = mV;
+	}
+
+	public Observable getMM() {
+		return MM;
+	}
+
+	public void setMM(Observable mM) {
+		MM = mM;
+	}
 
 	public MyControler() {
 		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override

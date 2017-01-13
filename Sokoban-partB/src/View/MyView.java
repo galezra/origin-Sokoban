@@ -1,14 +1,24 @@
 package View;
 
 import java.util.Observable;
-
-import Controler.MyControler;
+import java.util.Observer;
 
 public class MyView extends Observable implements ViewInterface {
 
-	MyControler MC;
+	Observer MC;
 	public MyView() {
 		// TODO Auto-generated constructor stub
+		
+	}
+	public MyView(Observer mC) {
+		super();
+		MC = mC;
+	}
+	public Observer getMC() {
+		return MC;
+	}
+	public void setMC(Observer mC) {
+		MC = mC;
 	}
 
 }
