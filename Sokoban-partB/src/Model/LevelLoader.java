@@ -1,10 +1,8 @@
-package View;
+package Model;
 
 
 import java.io.IOException;
 import java.io.InputStream;
-
-import Model.Level;
 
 
 public interface LevelLoader {

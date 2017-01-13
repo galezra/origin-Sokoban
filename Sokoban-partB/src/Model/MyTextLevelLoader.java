@@ -1,14 +1,9 @@
-package View;
+package Model;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
-import Model.Item;
-import Model.Level;
-import Model.Level2D;
-import Model.Position;
 
 
 public class MyTextLevelLoader implements LevelLoader{

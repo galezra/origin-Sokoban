@@ -1,10 +1,8 @@
-package View;
+package Model;
 
 import java.beans.XMLEncoder;
 import java.io.IOException;
 import java.io.OutputStream;
-
-import Model.Level;
 
 public class MyXMLLevelSaver implements LevelSaver {
 

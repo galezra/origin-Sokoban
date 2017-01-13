@@ -1,4 +1,4 @@
-package View;
+package Model;
 import java.util.HashMap;
 public class LevelLoaderFactory {
 	HashMap<String,LevelLoaderCreator> LLHM;

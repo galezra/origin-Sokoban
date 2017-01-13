@@ -1,13 +1,6 @@
-package View;
+package Model;
 
 import java.util.HashMap;
-
-import Model.Box;
-import Model.Destination;
-import Model.Floor;
-import Model.Item;
-import Model.Wall;
-import Model.Character;
 
 public class ObjectFactory  {
 	private HashMap<String,Creator> HM;

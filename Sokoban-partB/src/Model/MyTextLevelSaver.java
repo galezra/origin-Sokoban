@@ -1,11 +1,9 @@
-package View;
+package Model;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-
-import Model.Level;
 
 public class MyTextLevelSaver implements LevelSaver {
 

@@ -1,12 +1,10 @@
-package View;
+package Model;
 
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
-
-import Model.Level;
 public class MyObjectLevelLoader  implements LevelLoader,Serializable{
 	@Override
 	public Level loadLevel(InputStream in) throws IOException, ClassNotFoundException {

@@ -1,11 +1,9 @@
-package View;
+package Model;
 
 import java.beans.XMLDecoder;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
-import Model.Level;
 
 
 public class MyXMLLevelLoader implements LevelLoader {

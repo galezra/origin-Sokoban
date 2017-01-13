@@ -5,9 +5,9 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import Model.Level;
-import View.LevelSaver;
-import View.LevelSaverCreator;
-import View.LevelSaverFactory;
+import Model.LevelSaver;
+import Model.LevelSaverCreator;
+import Model.LevelSaverFactory;
 
 public class SaveCommand extends FunctionalCommand implements Command {
 

@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import Model.Level;
-import View.LevelLoader;
-import View.LevelLoaderFactory;
+import Model.LevelLoader;
+import Model.LevelLoaderFactory;
 
 public class LoadLevelCommand extends FunctionalCommand implements Command {
 	private String FileName;

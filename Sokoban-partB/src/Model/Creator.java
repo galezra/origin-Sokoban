@@ -1,6 +1,4 @@
-package View;
-
-import Model.Item;
+package Model;
 
 public interface Creator {
 	public Item create();
