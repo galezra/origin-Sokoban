@@ -1,4 +1,4 @@
-package Model;
+package Model.Data;
 
 import java.beans.XMLDecoder;
 import java.io.BufferedInputStream;

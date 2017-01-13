@@ -2,7 +2,7 @@ package Controler;
 
 import java.util.Scanner;
 
-import Model.Level;
+import Model.Data.Level;
 
 public class CLI {
 	Level MyLevel;

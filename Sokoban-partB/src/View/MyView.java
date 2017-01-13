@@ -5,7 +5,7 @@ import java.util.Observer;
 
 public class MyView extends Observable implements ViewInterface {
 
-	Observer MC;
+	private Observer MC;
 	public MyView() {
 		// TODO Auto-generated constructor stub
 		

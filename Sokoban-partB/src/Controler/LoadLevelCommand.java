@@ -5,9 +5,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import Model.Level;
-import Model.LevelLoader;
-import Model.LevelLoaderFactory;
+import Model.Data.Level;
+import Model.Data.LevelLoader;
+import Model.Data.LevelLoaderFactory;
 
 public class LoadLevelCommand extends FunctionalCommand implements Command {
 	private String FileName;

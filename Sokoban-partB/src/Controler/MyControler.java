@@ -5,8 +5,8 @@ import java.util.Observable;
 
 
 public class MyControler implements ControlerInterface {
-	Observable  MV;
-	Observable MM;
+	private Observable  MV;
+	private Observable MM;
 
 	public Observable getMV() {
 		return MV;
@@ -27,6 +27,12 @@ public class MyControler implements ControlerInterface {
 	public MyControler() {
 		// TODO Auto-generated constructor stub
 		
+	}
+
+	public MyControler(Observable mV, Observable mM) {
+		super();
+		MV = mV;
+		MM = mM;
 	}
 
 	@Override

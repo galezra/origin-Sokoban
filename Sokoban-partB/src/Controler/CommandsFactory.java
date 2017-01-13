@@ -2,7 +2,7 @@ package Controler;
 
 import java.util.HashMap;
 
-import Model.Level;
+import Model.Data.Level;
 
 public class CommandsFactory {
 	private HashMap<String,CommandCreator> CM;

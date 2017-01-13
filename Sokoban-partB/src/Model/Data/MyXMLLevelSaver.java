@@ -1,4 +1,4 @@
-package Model;
+package Model.Data;
 
 import java.beans.XMLEncoder;
 import java.io.IOException;

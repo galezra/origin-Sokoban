@@ -1,4 +1,10 @@
-package Model;
+package Model.Policy;
+
+import Model.Data.Box;
+import Model.Data.Item;
+import Model.Data.Level;
+import Model.Data.Position;
+import Model.Data.Wall;
 
 public class MySokobanPolicy
 {

@@ -1,4 +1,4 @@
-package Model;
+package Model.Data;
 
 public class Floor extends Item {
 	

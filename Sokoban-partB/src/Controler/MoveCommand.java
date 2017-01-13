@@ -1,11 +1,11 @@
 package Controler;
 
-import Model.Box;
-import Model.Item;
-import Model.Level;
-import Model.MySokobanPolicy;
-import Model.Position;
-import Model.Wall;
+import Model.Data.Box;
+import Model.Data.Item;
+import Model.Data.Level;
+import Model.Data.Position;
+import Model.Data.Wall;
+import Model.Policy.MySokobanPolicy;
 
 public class MoveCommand extends FunctionalCommand implements Command {
 

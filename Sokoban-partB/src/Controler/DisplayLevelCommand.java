@@ -1,6 +1,6 @@
 package Controler;
 
-import Model.Level;
+import Model.Data.Level;
 
 public class DisplayLevelCommand extends FunctionalCommand{
 

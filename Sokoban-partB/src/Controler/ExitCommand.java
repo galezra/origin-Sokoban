@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-import Model.Level;
+import Model.Data.Level;
 
 public class ExitCommand extends FunctionalCommand implements Command {
 

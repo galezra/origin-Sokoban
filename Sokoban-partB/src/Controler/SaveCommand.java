@@ -4,10 +4,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Scanner;
 
-import Model.Level;
-import Model.LevelSaver;
-import Model.LevelSaverCreator;
-import Model.LevelSaverFactory;
+import Model.Data.Level;
+import Model.Data.LevelSaver;
+import Model.Data.LevelSaverCreator;
+import Model.Data.LevelSaverFactory;
 
 public class SaveCommand extends FunctionalCommand implements Command {
 
