@@ -1,20 +1,14 @@
 package Boot;
-
-import java.util.Observable;
-
-
 import Controler.SokobanController;
 import Model.MyModel;
 import View.MyView;
 
 public class Run {
-	Observable  MV;
-	Observable  MM;
-	SokobanController MC;
 
+//jk
 	public Run() {
 		// TODO Auto-generated constructor stub
-		//MC.runCommandInThread();
+		
 	}
 
 	public static void main(String[] args) {
