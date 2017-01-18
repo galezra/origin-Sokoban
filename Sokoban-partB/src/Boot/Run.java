@@ -12,6 +12,7 @@ public class Run {
 	Observable  MM;
 	SokobanController MC;
 //uuu
+	//fdfddef
 	public Run() {
 		// TODO Auto-generated constructor stub
 		//MC.runCommandInThread();
