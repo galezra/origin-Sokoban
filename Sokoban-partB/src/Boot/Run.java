@@ -11,7 +11,7 @@ public class Run {
 	Observable  MV;
 	Observable  MM;
 	SokobanController MC;
-
+//uuu
 	public Run() {
 		// TODO Auto-generated constructor stub
 		//MC.runCommandInThread();
@@ -21,11 +21,11 @@ public class Run {
 		// TODO Auto-generated method stub
 		MyView  MV=new MyView();
 		MyModel MM=new MyModel();
-		SokobanController MC=new SokobanController(MV,MM); 
+		SokobanController MC=new SokobanController(MV,MM);
 		MV.addObserver(MC);
 		MM.addObserver(MC);
-	
-	
+
+
 
 	}
 
