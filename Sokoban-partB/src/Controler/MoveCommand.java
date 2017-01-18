@@ -15,7 +15,7 @@ public class MoveCommand extends FunctionalCommand implements Command {
 	}
 	public void execute() throws Exception
 	{
-		MySokobanPolicy MSP=new MySokobanPolicy();
+		
 		Item A=null;
 		Item B=null;
 		Item C=null;
@@ -99,6 +99,7 @@ public class MoveCommand extends FunctionalCommand implements Command {
 	
 	public int checkIfPossible(Item A,Item B,Item C)
 	{
+		MySokobanPolicy MSP=new MySokobanPolicy();
 		if (B==null)
 			return 0;
 		if (C==null)
@@ -115,7 +116,7 @@ public class MoveCommand extends FunctionalCommand implements Command {
 				return 0;
 			if (C instanceof Wall )
 			{
-				if (new MySokobanPolicy().goThrowWalls())
+				if (MSP.goThrowWalls())
 					return 1;
 				else
 					return 0;
@@ -124,7 +125,7 @@ public class MoveCommand extends FunctionalCommand implements Command {
 		}
 		if (B instanceof Wall)
 		{
-			if (new MySokobanPolicy().goThrowWalls())
+			if ( MSP.goThrowWalls())
 				return 1;
 			else
 				return 0;

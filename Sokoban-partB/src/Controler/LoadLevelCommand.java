@@ -10,7 +10,7 @@ import Model.Data.LevelLoader;
 import Model.Data.LevelLoaderFactory;
 
 public class LoadLevelCommand extends FunctionalCommand implements Command {
-	private String FileName;
+	
 	HashMap<String,LevelLoader> LLM;
 	public LoadLevelCommand(Level lev) 
 	{
@@ -24,11 +24,13 @@ public class LoadLevelCommand extends FunctionalCommand implements Command {
 		String FileType;
 		String []args=this.getStr().split(" ");
 		Scanner sc=new Scanner(args[1]).useDelimiter("\\.");
+		
 		LevelLoader LL;
 		LevelLoaderFactory LLF=new LevelLoaderFactory();
 		do {
 			FileType=sc.next();
 		}while(sc.hasNext());
+		
 		LL=LLF.getLLHM().get(FileType).create();
 		try{
 		this.setLev(LL.loadLevel(new FileInputStream(args[1])));
@@ -42,6 +44,7 @@ public class LoadLevelCommand extends FunctionalCommand implements Command {
 			System.out.println("level upload succsess");
 		else
 			System.out.println("level upload failed");
+		sc.close();
 		
 		
 	}

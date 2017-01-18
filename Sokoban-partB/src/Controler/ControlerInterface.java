@@ -1,7 +1,9 @@
 package Controler;
 
-import java.util.Observer;
 
-public interface ControlerInterface extends Observer {
+
+public interface ControlerInterface  {
+	public void start();
+	public void stop();
 
 }

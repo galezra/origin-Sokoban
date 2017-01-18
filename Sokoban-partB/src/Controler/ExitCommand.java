@@ -36,6 +36,7 @@ public class ExitCommand extends FunctionalCommand implements Command {
 			System.exit(0);
 		}
 		System.out.println("wrong answer,try again in the main menu...");
+		sc.close();
 	}
 
 

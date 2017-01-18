@@ -54,6 +54,7 @@ public class CLI {
 				System.out.println(npe+" invaild name or root, try again");
 			}
 			System.out.flush();
+			sc.close();
 			
 		}
 	

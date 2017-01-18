@@ -27,6 +27,7 @@ public class SaveCommand extends FunctionalCommand implements Command {
 			FileType=sc.next();
 		}while(sc.hasNext());
 		LSC=LSF.getLSHM().get(FileType);
+		
 		if (LSC!=null)
 		{
 			try
@@ -42,5 +43,6 @@ public class SaveCommand extends FunctionalCommand implements Command {
 		}
 		else
 			throw new Exception("your file type isn't legal..try txt/xml/obj");
+		sc.close();
 	}
 }
