@@ -5,7 +5,10 @@ import View.MyView;
 
 public class Run {
 
-//jk
+
+
+
+
 	public Run() {
 		// TODO Auto-generated constructor stub
 		
@@ -15,11 +18,11 @@ public class Run {
 		// TODO Auto-generated method stub
 		MyView  MV=new MyView();
 		MyModel MM=new MyModel();
-		SokobanController MC=new SokobanController(MV,MM); 
+		SokobanController MC=new SokobanController(MV,MM);
 		MV.addObserver(MC);
 		MM.addObserver(MC);
-	
-	
+
+
 
 	}
 
