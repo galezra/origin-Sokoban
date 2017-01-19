@@ -48,6 +48,8 @@ public class CLI {
 						System.out.println(e+" try again");
 					}
 				}
+				else
+					throw new Exception("Undefined Command");
 			}
 			catch (NullPointerException npe)
 			{
