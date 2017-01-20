@@ -8,7 +8,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
-<?import view.Maze2DDisplayer?>
+<?import view.SokobanDisplayer?>
 
 <BorderPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainWindowController">
    <top>
@@ -55,7 +55,7 @@
       <VBox prefHeight="500.0" prefWidth="233.0" BorderPane.alignment="CENTER" />
    </right>
    <center>
-      <Maze2DDisplayer fx:id="mazeData" height="300.0" width="300.0" BorderPane.alignment="CENTER" />
+      <SokobanDisplayer fx:id="sd" height="300.0" width="300.0" BorderPane.alignment="CENTER" wall="./resources/wall.jpg" character="./resources/character.jpg" box="./resources/box.jpg" floor="./resources/floor.jpg" destination="./resources/destination.jpg" />
       
    </center>
 </BorderPane>
