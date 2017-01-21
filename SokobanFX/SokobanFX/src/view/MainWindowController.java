@@ -14,7 +14,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 public class MainWindowController extends Observable  implements Initializable,ViewInterface{
 	@FXML	private SokobanDisplayer sd=new SokobanDisplayer();
@@ -23,26 +25,33 @@ public class MainWindowController extends Observable  implements Initializable,V
 	private SokobanController SC;
 		
 
+
 	public void exit()
 	{
 		this.setUserCommand("exit game");//without saving the game
 	}
 	public void saveFileMethod()
 	{
-		try {
-			FileWriter fw=new FileWriter(new File("./resources"));
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		FileChooser fc=new FileChooser();
+		fc.setInitialDirectory(new File("./resources/Levels"));
+		fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text doc(*.txt)", "*.txt"));
+		fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("XML doc(*.xml)", "*.xml"));
+		fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Object file(*.obj)", "*.obj"));
+
+		File chosen=fc.showSaveDialog(null);
+		if (chosen!=null)
+		{
+			String fileName=chosen.getName();
+			System.out.println(fileName);
+			this.setUserCommand("save "+fileName);
 		}
-		
 		
 	}
 	public void loadFileMethod()
 	{
 		 
 	 FileChooser fc = new FileChooser();
+	 
 	 fc.setTitle("open sokoban level file:");
 	 fc.setInitialDirectory(new File("./resources/Levels"));
 	 File chosen  = fc.showOpenDialog(null);

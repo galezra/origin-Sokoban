@@ -1,7 +1,9 @@
 package Controler;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Scanner;
 
 import Model.Data.Level;
@@ -26,6 +28,7 @@ public class SaveCommand extends FunctionalCommand implements Command {
 		do {
 			FileType=sc.next();
 		}while(sc.hasNext());
+		
 		LSC=LSF.getLSHM().get(FileType);
 		
 		if (LSC!=null)
@@ -33,11 +36,12 @@ public class SaveCommand extends FunctionalCommand implements Command {
 			try
 			{
 				LS=LSC.creat();
-				LS.SaveLevel(new FileOutputStream(args[1]), this.getLev());
+				LS.SaveLevel(new FileOutputStream(new File("./resources/Levels/"+args[1])),this.getLev());
 				System.out.println("save level sucsses...");
 			}
 			catch (IOException e)
 			{
+				
 				System.out.println("caught IOException");
 			}
 		}
