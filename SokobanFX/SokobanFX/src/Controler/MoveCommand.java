@@ -91,7 +91,8 @@ public class MoveCommand extends FunctionalCommand implements Command {
 			
 		
 		this.getLev().getCharacterList().add(A);
-		this.getLev().print();
+		//print the level to the console
+		//this.getLev().print();
 		
 	
 	

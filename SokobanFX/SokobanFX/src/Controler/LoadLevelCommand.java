@@ -33,7 +33,7 @@ public class LoadLevelCommand extends FunctionalCommand implements Command {
 		
 		LL=LLF.getLLHM().get(FileType).create();
 		try{
-		this.setLev(LL.loadLevel(new FileInputStream(args[1])));
+		this.setLev(LL.loadLevel(new FileInputStream("./resources/Levels/"+args[1])));
 		}
 		catch (IOException e)
 		{

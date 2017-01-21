@@ -14,7 +14,15 @@ public class Level2D extends Level implements Serializable {
 	private int Width;
 	private Item[][] Map;
 	
-	
+	public char[][] toCharArray()
+	{
+		char[][] arr=new char[Length][Width];
+		for(int i=0;i<Length;i++)
+			for (int j=0;j<Width;j++)
+				arr[i][j]=Map[i][j].getChar();
+		return arr;
+		
+	}
 	public void setInPlace(Item it, Position dest)
 	{
 		Position oldPos=it.getPos();

@@ -11,6 +11,10 @@ public class Item implements Serializable {
 	/**
 	 * 
 	 */
+	public char getChar()
+	{
+		return '.';
+	}
 	private static final long serialVersionUID = 1L;
 	private Position pos;
 	private boolean onDest;

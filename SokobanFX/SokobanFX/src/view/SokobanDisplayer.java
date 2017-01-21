@@ -40,6 +40,7 @@ public class SokobanDisplayer extends Canvas  {
 	}
 	public void redraw()
 	{
+		
 		HashMap<Character,Image> HM=new HashMap<Character,Image>();
 		try {
 			HM.put('A', new Image(new FileInputStream(this.getCharacter())));
@@ -53,6 +54,7 @@ public class SokobanDisplayer extends Canvas  {
 		}
 		if (this.levelData!=null)
 		{
+			
 			double W=getWidth();
 			double H=getHeight();
 			double w=W/cCol;
@@ -64,7 +66,7 @@ public class SokobanDisplayer extends Canvas  {
 			for (int i=0;i<cRow;i++)
 				for(int j=0;j<cCol;j++)
 				{
-					System.out.print(""+this.levelData[i][j]);
+					
 					A=HM.get(this.levelData[i][j]);
 					gc.drawImage(A, j*w, i*h, w, h);
 					
@@ -75,11 +77,15 @@ public class SokobanDisplayer extends Canvas  {
 		return levelData;
 	}
 	public void setLevelData(char[][] levelData) {
-		
-		cCol=levelData[0].length;
-		cRow=levelData.length;
-		this.levelData = levelData;
-		this.redraw();
+		if (levelData!=null)
+		{
+			cCol=levelData[0].length;
+			cRow=levelData.length;
+			this.levelData = levelData;
+			this.redraw();
+		}
+		else
+			System.out.println("level is null");
 	}
 	public double getcRow() {
 		return cRow;

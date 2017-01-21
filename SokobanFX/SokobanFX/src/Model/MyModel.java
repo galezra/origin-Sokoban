@@ -21,6 +21,7 @@ public class MyModel extends Observable implements ModelInterface {
 	public MyModel() {
 		
 		// TODO Auto-generated constructor stub
+		
 		CurrentLevel=new Level();
 		
 		
@@ -33,6 +34,8 @@ public class MyModel extends Observable implements ModelInterface {
 	}
 	public void setCurrentLevel(Level currentLevel) {
 		CurrentLevel = currentLevel;
+		this.setChanged();
+		this.notifyObservers();
 		
 	}
 

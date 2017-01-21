@@ -7,6 +7,10 @@ import javafx.scene.image.Image;
 
 public class Floor extends Item {
 	
+	public char getChar()
+	{
+		return ' ';
+	}
 	public String toString()
 	{
 		return " ";

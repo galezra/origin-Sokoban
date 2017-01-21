@@ -23,6 +23,7 @@ public class FunctionalCommand implements Command {
 	}
 
 	public void setLev(Level lev) {
+		
 		mM.setCurrentLevel(lev);
 		mV.setLev(lev);
 	}
@@ -30,9 +31,10 @@ public class FunctionalCommand implements Command {
 	public FunctionalCommand(Level lev) {
 		super();
 		// TODO Auto-generated constructor stub
-		this.setLev(lev);
 		this.mM=new MyModel();
 		this.mV=new MyView();
+		this.setLev(lev);
+		
 	}
 
 	public FunctionalCommand(MyModel mM, MyView mV, String str) {

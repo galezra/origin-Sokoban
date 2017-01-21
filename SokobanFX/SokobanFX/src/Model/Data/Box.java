@@ -23,6 +23,10 @@ public class Box extends Item implements Serializable{
 		return null;
 	}
 
+	public char getChar()
+	{
+		return '@';
+	}
 	public String toString()
 	{
 		if (this.isOnDest())

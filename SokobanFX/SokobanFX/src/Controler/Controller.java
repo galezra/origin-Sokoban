@@ -1,11 +1,12 @@
 package Controler;
 
 
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 public class Controller implements ControlerInterface {
-	private PriorityBlockingQueue<FunctionalCommand> mQ;
+	private ArrayBlockingQueue<FunctionalCommand> mQ;
 	private FunctionalCommand cmd;
 	private boolean isStopped;
 	public void insertNewCommand(FunctionalCommand cmd)
@@ -15,24 +16,24 @@ public class Controller implements ControlerInterface {
 	public Controller() {
 		super();
 		// TODO Auto-generated constructor stub
-		mQ=new PriorityBlockingQueue<FunctionalCommand>(10);
+		mQ=new ArrayBlockingQueue<FunctionalCommand>(10);
 		this.isStopped=false;
 	}
 
 
 	public Command getCmd() {
-		return cmd;
+		return mQ.poll();
 	}
-	public Controller(PriorityBlockingQueue<FunctionalCommand> mQ) {
+	public Controller(ArrayBlockingQueue<FunctionalCommand> mQ) {
 		super();
 		this.mQ = mQ;
 		this.isStopped=false;
 
 	}
-	public PriorityBlockingQueue<FunctionalCommand> getmQ() {
+	public ArrayBlockingQueue<FunctionalCommand> getmQ() {
 		return mQ;
 	}
-	public void setmQ(PriorityBlockingQueue<FunctionalCommand> mQ) {
+	public void setmQ(ArrayBlockingQueue<FunctionalCommand> mQ) {
 		this.mQ = mQ;
 	}
 	

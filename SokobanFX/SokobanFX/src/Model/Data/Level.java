@@ -15,6 +15,10 @@ public class Level implements Serializable{
 	private ArrayList<Item> DestinyList;
 	private ArrayList<Item> WallList;
 	private ArrayList<Position> ConquredDestinations;
+	public char[][] toCharArray()
+	{
+		return null;
+	}
 	public boolean checkIfFinish()
 	{
 		for (Item it: BoxList)

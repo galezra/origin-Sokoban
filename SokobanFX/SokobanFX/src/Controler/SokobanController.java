@@ -1,57 +1,71 @@
 package Controler;
 
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
 import Model.MyModel;
+import Model.Data.MyTextLevelLoader;
+import view.MainWindowController;
 import view.MyView;
 
 
 
 public class SokobanController implements Observer {
-	private MyView  MV;
+	private MainWindowController MWC;
 	private MyModel MM;
-	private Controller C;
+	private Controller controller;
 	private CommandsFactory cF;
 	
 	
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
-	
+		
 		CommandCreator cC;
-		cF=new CommandsFactory();
 		FunctionalCommand cmd;
+		
+		
 		if (arg0==MM)
 		{
-			MV.setLev(MM.getCurrentLevel());
+			
+			MWC.setArr((MM.getCurrentLevel().toCharArray()));
 		}
-		else if (arg0==MV)
+		else if (arg0==MWC)
 		{
 			
 				
 				//getting the specific command by string
-			cC=cF.getCM().get(arg1);
+			
+			String []s=MWC.getUserCommand().split(" ");
+
+			cC=cF.getCM().get(s[0]);
+			
 			if (cC!=null)
 			{
+				
 				cmd=cC.create();
+				
 				if (cmd!=null)
 				{//add this command to my controller queue
-				cmd.setStr((String)arg1);
-				this.C.getmQ().add(cmd);
-				/*get the first command in my queue,but in our case this will be
-				the command i entered in the line above*/
-				cmd=(FunctionalCommand)C.getCmd();
-				
+					cmd.setStr(MWC.getUserCommand());
+					this.controller.getmQ().add(cmd);
+					/*get the first command in my queue,but in our case this will be
+					the command i entered in the line above*/
+					cmd=(FunctionalCommand)controller.getCmd();
 					cmd.setLev(this.MM.getCurrentLevel());
-					try {
-						
-						cmd.execute();
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					this.MM.setCurrentLevel(cmd.getLev());
+						try {
+							
+							cmd.execute();
+							
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						this.MM.setCurrentLevel(cmd.getLev());
+										
 					
 				}
 			}
@@ -65,11 +79,11 @@ public class SokobanController implements Observer {
 		
 
 	}
-	public Controller getC() {
-		return C;
+	public Controller getController() {
+		return controller;
 	}
-	public void setC(Controller c) {
-		C = c;
+	public void setController(Controller c) {
+		controller = c;
 	}
 	public CommandsFactory getcF() {
 		return cF;
@@ -77,41 +91,36 @@ public class SokobanController implements Observer {
 	public void setcF(CommandsFactory cF) {
 		this.cF = cF;
 	}
-	public void setMV(MyView mV) {
-		MV = mV;
-	}
+
 	public void setMM(MyModel mM) {
 		MM = mM;
 	}
-	public Observable getMV() {
-		return MV;
-	}
 
-	public void setMV(Observable mV) {
-		MV = (MyView) mV;
+	
+	public MainWindowController getMWC() {
+		return MWC;
 	}
-
-	public Observable getMM() {
+	public void setMWC(MainWindowController mWC) {
+		MWC = mWC;
+	}
+	public MyModel getMM() {
 		return MM;
 	}
-
-	public void setMM(Observable mM) {
-		MM = (MyModel) mM;
-	}
-
 	public SokobanController() {
 		// TODO Auto-generated constructor stub
 		this.MM=new MyModel();
-		this.MV=new MyView();
-		this.C=new Controller();
+
+		MM.addObserver(this);
+		this.controller=new Controller();
 		this.cF=new CommandsFactory();
 	}
 
-	public SokobanController(MyView  mV, MyModel mM) {
+	public SokobanController(MainWindowController  mwc, MyModel mM) {
 		super();
-		MV =  mV;
+		
+		MWC=  mwc;
 		MM =  mM;
-		this.C=new Controller();
+		this.controller=new Controller();
 		this.cF=new CommandsFactory();
 	}
 	

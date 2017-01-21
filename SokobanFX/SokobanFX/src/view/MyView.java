@@ -39,10 +39,6 @@ public class MyView extends Observable implements ViewInterface {
 	}
 
 
-	@Override
-	public void reDraw() {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 }

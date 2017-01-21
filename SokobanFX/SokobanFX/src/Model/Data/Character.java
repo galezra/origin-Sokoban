@@ -8,6 +8,10 @@ import javafx.scene.image.Image;
 
 public class Character extends Item implements Serializable {
 	
+	public char getChar()
+	{
+		return 'A';
+	}
 	public Image getImage()
 	{
 		

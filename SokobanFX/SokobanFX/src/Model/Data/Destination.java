@@ -7,6 +7,10 @@ import java.io.Serializable;
 import javafx.scene.image.Image;
 
 public class Destination extends Item implements Serializable {
+	public char getChar()
+	{
+		return 'o';
+	}
 	public Destination() {
 		super();
 		// TODO Auto-generated constructor stub

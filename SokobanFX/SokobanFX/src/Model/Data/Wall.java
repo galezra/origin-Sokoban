@@ -8,6 +8,10 @@ import javafx.scene.image.Image;
 
 public class Wall extends Item implements Serializable {
 
+	public char getChar()
+	{
+		return '#';
+	}
 	public void print()
 	{
 		System.out.print("#");
