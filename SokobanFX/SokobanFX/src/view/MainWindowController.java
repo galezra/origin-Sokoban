@@ -83,6 +83,7 @@ public class MainWindowController extends Observable  implements Initializable,V
 		this.arr = arr;
 		this.sd.setLevelData(arr);
 	}
+	//ddsf
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
