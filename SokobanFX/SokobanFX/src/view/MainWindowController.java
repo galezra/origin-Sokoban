@@ -22,7 +22,7 @@ public class MainWindowController extends Observable  implements Initializable,V
 	@FXML	private SokobanDisplayer sd=new SokobanDisplayer();
 	private String userCommand;
 	private char[][]arr;
-	private SokobanController SC;
+	//private SokobanController SC;
 
 
 
@@ -83,15 +83,15 @@ public class MainWindowController extends Observable  implements Initializable,V
 		this.arr = arr;
 		this.sd.setLevelData(arr);
 	}
-	//ddsf
+	
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		SC=new SokobanController();
+		/*SC=new SokobanController();
 
 		this.arr=SC.getMM().getCurrentLevel().toCharArray();
-		this.addObserver(SC);
+		this.addObserver(SC);*/
 		sd.addEventFilter(MouseEvent.MOUSE_CLICKED, (e)->sd.requestFocus());
 
 		sd.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -118,9 +118,10 @@ public class MainWindowController extends Observable  implements Initializable,V
 			}
 		});
 		sd.setLevelData(arr);
+		
 		this.setChanged();
 		this.notifyObservers();
-		SC.setMWC(this);
+		//SC.setMWC(this);
 
 
 

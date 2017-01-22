@@ -23,6 +23,7 @@ public class SokobanDisplayer extends Canvas  {
 	private StringProperty character;
 	private StringProperty floor;
 	private StringProperty destination;
+	private StringProperty open;
 	public SokobanDisplayer() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -31,7 +32,7 @@ public class SokobanDisplayer extends Canvas  {
 		this.character=new SimpleStringProperty();
 		this.destination=new SimpleStringProperty();
 		this.floor=new SimpleStringProperty();
-		
+		this.open=new SimpleStringProperty();
 
 	}
 	public SokobanDisplayer(double width, double height) {
@@ -48,21 +49,24 @@ public class SokobanDisplayer extends Canvas  {
 			HM.put('@',  new Image(new FileInputStream(this.getBox())));
 			HM.put('#', new Image(new FileInputStream(this.getWall())));
 			HM.put('o', new Image(new FileInputStream(this.getDestination())));
+			HM.put('X', new Image(new FileInputStream(this.getOpen())));
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		double W=getWidth();
+		double H=getHeight();
+		double w=W/cCol;
+		double h=H/cRow;
+		GraphicsContext gc=this.getGraphicsContext2D();
+		
+		Image A=null;
 		if (this.levelData!=null)
 		{
 			
-			double W=getWidth();
-			double H=getHeight();
-			double w=W/cCol;
-			double h=H/cRow;
-			GraphicsContext gc=this.getGraphicsContext2D();
-			gc.clearRect(0, 0, W, H);
-			Image A=null;
+			
 		
+			gc.clearRect(0, 0, W, H);
 			for (int i=0;i<cRow;i++)
 				for(int j=0;j<cCol;j++)
 				{
@@ -71,6 +75,11 @@ public class SokobanDisplayer extends Canvas  {
 					gc.drawImage(A, j*w, i*h, w, h);
 					
 				}
+		}
+		else
+		{
+			A=HM.get('X');
+			gc.drawImage(A, 0, 0, W, H);
 		}
 	}
 	public char[][] getLevelData() {
@@ -82,10 +91,11 @@ public class SokobanDisplayer extends Canvas  {
 			cCol=levelData[0].length;
 			cRow=levelData.length;
 			this.levelData = levelData;
-			this.redraw();
+			
 		}
 		else
 			System.out.println("level is null");
+		this.redraw();
 	}
 	public double getcRow() {
 		return cRow;
@@ -98,6 +108,13 @@ public class SokobanDisplayer extends Canvas  {
 	}
 	public void setcCol(double cCol) {
 		this.cCol = cCol;
+	}
+	
+	public String getOpen() {
+		return open.get();
+	}
+	public void setOpen(String open) {
+		this.open.set(open);
 	}
 	public String getWall() {
 		return wall.get();

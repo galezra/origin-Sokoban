@@ -61,7 +61,7 @@
       <VBox prefHeight="500.0" prefWidth="233.0" BorderPane.alignment="CENTER" />
    </right>
    <center>
- <SokobanDisplayer fx:id="sd" height="300.0" width="300.0" BorderPane.alignment="CENTER" wall="./resources/Images/wall.jpg" character="./resources/Images/character.jpg" box="./resources/Images/box.jpg" floor="./resources/Images/floor.jpg" destination="./resources/Images/destination.jpg" />
+ <SokobanDisplayer fx:id="sd" height="300.0" width="300.0" BorderPane.alignment="CENTER" wall="./resources/Images/wall.jpg" character="./resources/Images/character.jpg" box="./resources/Images/box.jpg" floor="./resources/Images/floor.jpg" destination="./resources/Images/destination.jpg" open="./resources/Images/open.jpg" />
       
    </center>
 </BorderPane>

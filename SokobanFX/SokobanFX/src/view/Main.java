@@ -1,6 +1,7 @@
 package view;
 	
 
+import Controler.SokobanController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,7 +13,13 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
+			FXMLLoader fl=new FXMLLoader();
+			
+			BorderPane root = fl.load(getClass().getResource("MainWindow.fxml").openStream());
+			MainWindowController mwc=fl.getController();
+			SokobanController sc=new SokobanController();
+			mwc.addObserver(sc);
+			sc.setMWC(mwc);
 			Scene scene = new Scene(root,400,400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
