@@ -23,7 +23,7 @@ public class MainWindowController extends Observable  implements Initializable,V
 	private String userCommand;
 	private char[][]arr;
 	private SokobanController SC;
-		
+
 
 
 	public void exit()
@@ -41,17 +41,18 @@ public class MainWindowController extends Observable  implements Initializable,V
 		File chosen=fc.showSaveDialog(null);
 		if (chosen!=null)
 		{
+			sd.requestFocus();
 			String fileName=chosen.getName();
 			System.out.println(fileName);
 			this.setUserCommand("save "+fileName);
 		}
-		
+
 	}
 	public void loadFileMethod()
 	{
-		 
+
 	 FileChooser fc = new FileChooser();
-	 
+
 	 fc.setTitle("open sokoban level file:");
 	 fc.setInitialDirectory(new File("./resources/Levels"));
 	 File chosen  = fc.showOpenDialog(null);
@@ -59,10 +60,10 @@ public class MainWindowController extends Observable  implements Initializable,V
 	 {
 		String fileName= chosen.getName();
 		this.setUserCommand("load "+fileName);
-	
-		
+
+
 	 }
-			    
+
 	}
 	public SokobanDisplayer getSd() {
 		return sd;
@@ -87,20 +88,20 @@ public class MainWindowController extends Observable  implements Initializable,V
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		SC=new SokobanController();
-		
+
 		this.arr=SC.getMM().getCurrentLevel().toCharArray();
 		this.addObserver(SC);
 		sd.addEventFilter(MouseEvent.MOUSE_CLICKED, (e)->sd.requestFocus());
-		
+
 		sd.setOnKeyPressed(new EventHandler<KeyEvent>() {
-		
+
 			@Override
 			public void handle(KeyEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 				if (arg0.getCode()==KeyCode.UP)
 				{
-					
+
 					setUserCommand("move up");
 				}
 				if (arg0.getCode()==KeyCode.DOWN)
@@ -109,20 +110,20 @@ public class MainWindowController extends Observable  implements Initializable,V
 					setUserCommand("move left");
 				if (arg0.getCode()==KeyCode.RIGHT)
 					setUserCommand("move right");
-				
 
-				
-				
+
+
+
 			}
 		});
 		sd.setLevelData(arr);
 		this.setChanged();
 		this.notifyObservers();
 		SC.setMWC(this);
-		
-		
-		
-		
+
+
+
+
 	}
 
 	public String getUserCommand() {
@@ -137,8 +138,8 @@ public class MainWindowController extends Observable  implements Initializable,V
 	}
 
 
-	
-	
-	
+
+
+
 
 }
