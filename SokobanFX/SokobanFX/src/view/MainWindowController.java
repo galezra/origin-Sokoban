@@ -32,20 +32,23 @@ public class MainWindowController extends Observable  implements Initializable,V
 	}
 	public void saveFileMethod()
 	{
-		FileChooser fc=new FileChooser();
-		fc.setInitialDirectory(new File("./resources/Levels"));
-		fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text doc(*.txt)", "*.txt"));
-		fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("XML doc(*.xml)", "*.xml"));
-		fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Object file(*.obj)", "*.obj"));
-
-		File chosen=fc.showSaveDialog(null);
-		if (chosen!=null)
+		if (arr!=null)
 		{
-			sd.requestFocus();
-			String fileName=chosen.getName();
-			System.out.println(fileName);
-			this.setUserCommand("save "+fileName);
+			FileChooser fc=new FileChooser();
+			fc.setInitialDirectory(new File("./resources/Levels"));
+			fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text doc(*.txt)", "*.txt"));
+			fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("XML doc(*.xml)", "*.xml"));
+			fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Object file(*.obj)", "*.obj"));
+	
+			File chosen=fc.showSaveDialog(null);
+			if (chosen!=null)
+			{
+				sd.requestFocus();
+				String fileName=chosen.getName();
+				this.setUserCommand("save "+fileName);
+			}
 		}
+		
 
 	}
 	public void loadFileMethod()
@@ -88,10 +91,7 @@ public class MainWindowController extends Observable  implements Initializable,V
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		/*SC=new SokobanController();
-
-		this.arr=SC.getMM().getCurrentLevel().toCharArray();
-		this.addObserver(SC);*/
+	
 		sd.addEventFilter(MouseEvent.MOUSE_CLICKED, (e)->sd.requestFocus());
 
 		sd.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -100,17 +100,20 @@ public class MainWindowController extends Observable  implements Initializable,V
 			public void handle(KeyEvent arg0) {
 				// TODO Auto-generated method stub
 
-				if (arg0.getCode()==KeyCode.UP)
+				if(arr!=null)
 				{
-
-					setUserCommand("move up");
+					if (arg0.getCode()==KeyCode.UP)
+					{
+	
+						setUserCommand("move up");
+					}
+					if (arg0.getCode()==KeyCode.DOWN)
+						setUserCommand("move down");
+					if (arg0.getCode()==KeyCode.LEFT)
+						setUserCommand("move left");
+					if (arg0.getCode()==KeyCode.RIGHT)
+						setUserCommand("move right");
 				}
-				if (arg0.getCode()==KeyCode.DOWN)
-					setUserCommand("move down");
-				if (arg0.getCode()==KeyCode.LEFT)
-					setUserCommand("move left");
-				if (arg0.getCode()==KeyCode.RIGHT)
-					setUserCommand("move right");
 
 
 
@@ -134,7 +137,6 @@ public class MainWindowController extends Observable  implements Initializable,V
 
 	public void setUserCommand(String userCommand) {
 		this.userCommand = userCommand;
-		System.out.println(userCommand);
 		this.setChanged();
 		this.notifyObservers(userCommand);
 	}

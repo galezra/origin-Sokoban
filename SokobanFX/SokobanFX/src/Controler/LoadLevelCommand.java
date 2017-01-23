@@ -40,10 +40,10 @@ public class LoadLevelCommand extends FunctionalCommand implements Command {
 			System.out.println("caught IOException");
 		}
 		
-		if (this.getLev()!=null)
+		/*if (this.getLev()!=null)
 			System.out.println("level upload succsess");
 		else
-			System.out.println("level upload failed");
+			System.out.println("level upload failed");*/
 		sc.close();
 		
 		
