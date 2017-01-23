@@ -71,20 +71,20 @@ public class MoveCommand extends FunctionalCommand implements Command {
 		
 			howManyMoves=this.checkIfPossible(A,B,C);
 			if (howManyMoves==1)
+			{
 				this.getLev().setInPlace(A, B.getPos());
+				this.getLev().setStepsCounter(this.getLev().getStepsCounter()+1);
+			}
 				
 			if (howManyMoves==2)
 			{
 				temp=B.getPos();
 				this.getLev().setInPlace(B, C.getPos());
 				this.getLev().setInPlace(A, temp);
-
-			}
-			if (howManyMoves==0)
-			{
+				this.getLev().setStepsCounter(this.getLev().getStepsCounter()+1);
 				
-				System.out.println("you can't move to this direction");
 			}
+	
 			
 		
 		

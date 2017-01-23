@@ -15,6 +15,11 @@ public class Level implements Serializable{
 		private ArrayList<Item> DestinyList;
 		private ArrayList<Item> WallList;
 		private ArrayList<Position> ConquredDestinations;
+		
+		
+		private int stepsCounter;
+		
+		
 		public char[][] toCharArray()
 		{
 			return null;
@@ -122,5 +127,13 @@ public class Level implements Serializable{
 		this.DestinyList=new ArrayList<Item>();
 		this.CharacterList=new ArrayList<Item>();
 		this.ConquredDestinations=new ArrayList<Position>();
+		
+		this.stepsCounter=0;
+	}
+	public int getStepsCounter() {
+		return stepsCounter;
+	}
+	public void setStepsCounter(int stepsCounter) {
+		this.stepsCounter = stepsCounter;
 	}
 }

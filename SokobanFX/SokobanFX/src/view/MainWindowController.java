@@ -31,6 +31,10 @@ public class MainWindowController extends Observable  implements Initializable,V
 	int steps;
 	@FXML
 	Text myText;
+	
+	
+
+
 	@FXML
 	Text mySteps;
 	StringProperty Counter;
@@ -43,7 +47,16 @@ public class MainWindowController extends Observable  implements Initializable,V
 	
 	
 	}
+	public int getSteps() {
+		return steps;
+	}
 
+
+	public void setSteps(int steps) {
+		this.steps = steps;
+		stepCounter.set(""+steps);
+
+	}
 
 	public void startCounter()
 	{
@@ -54,7 +67,7 @@ public class MainWindowController extends Observable  implements Initializable,V
 					
 					@Override
 					public void run() {
-						Counter.set(""+(++count));
+						setCount(getCount()+1);
 					}
 				}, 0, 1000);
 	}
@@ -63,8 +76,10 @@ public class MainWindowController extends Observable  implements Initializable,V
 		// TODO Auto-generated method stub
 		Counter=new SimpleStringProperty();
 		stepCounter=new SimpleStringProperty();
-		steps=0;
-		count=0;
+		
+		
+		this.setSteps(0);
+		this.setCount(0);
 		myText.textProperty().bind(Counter);
 		mySteps.textProperty().bind(stepCounter);
 		
@@ -80,23 +95,19 @@ public class MainWindowController extends Observable  implements Initializable,V
 				{
 					if (arg0.getCode()==KeyCode.UP)
 					{
-						stepCounter.set(""+(++steps));
 						setUserCommand("move up");
 						
 					}
 					if (arg0.getCode()==KeyCode.DOWN)
 					{
-						stepCounter.set(""+(++steps));
 						setUserCommand("move down");
 					}
 					if (arg0.getCode()==KeyCode.LEFT)
 					{
-						stepCounter.set(""+(++steps));
 						setUserCommand("move left");
 					}
 					if (arg0.getCode()==KeyCode.RIGHT)
 					{
-						stepCounter.set(""+(++steps));
 						setUserCommand("move right");
 					}
 				}
@@ -117,6 +128,13 @@ public class MainWindowController extends Observable  implements Initializable,V
 
 	}
 
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+		this.Counter.set(""+count);
+	}
 	public String getUserCommand() {
 		return userCommand;
 	}
