@@ -1,6 +1,9 @@
 package view;
 
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import java.io.File;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
@@ -8,6 +11,8 @@ import java.util.Observable;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
+
+
 
 import Controler.SokobanController;
 import javafx.beans.property.SimpleStringProperty;
@@ -18,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+
 import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
@@ -39,7 +45,7 @@ public class MainWindowController extends Observable  implements Initializable,V
 	Text mySteps;
 	StringProperty Counter;
 	StringProperty stepCounter;
-	//private SokobanController SC;
+	String musicFile="./resources/Music/song.mp3";
 
 
 
@@ -74,6 +80,9 @@ public class MainWindowController extends Observable  implements Initializable,V
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		Media song=new Media(new File(musicFile).toURI().toString());
+		MediaPlayer mp=new MediaPlayer(song);
+		mp.play();
 		Counter=new SimpleStringProperty();
 		stepCounter=new SimpleStringProperty();
 		
