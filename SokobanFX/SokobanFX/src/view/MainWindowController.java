@@ -28,9 +28,13 @@ public class MainWindowController extends Observable  implements Initializable,V
 	private String userCommand;
 	private char[][]arr;
 	int count;
+	int steps;
 	@FXML
 	Text myText;
+	@FXML
+	Text mySteps;
 	StringProperty Counter;
+	StringProperty stepCounter;
 	//private SokobanController SC;
 
 
@@ -58,8 +62,12 @@ public class MainWindowController extends Observable  implements Initializable,V
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		Counter=new SimpleStringProperty();
+		stepCounter=new SimpleStringProperty();
+		steps=0;
 		count=0;
 		myText.textProperty().bind(Counter);
+		mySteps.textProperty().bind(stepCounter);
+		
 		sd.addEventFilter(MouseEvent.MOUSE_CLICKED, (e)->sd.requestFocus());
 
 		sd.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -72,15 +80,25 @@ public class MainWindowController extends Observable  implements Initializable,V
 				{
 					if (arg0.getCode()==KeyCode.UP)
 					{
-	
+						stepCounter.set(""+(++steps));
 						setUserCommand("move up");
+						
 					}
 					if (arg0.getCode()==KeyCode.DOWN)
+					{
+						stepCounter.set(""+(++steps));
 						setUserCommand("move down");
+					}
 					if (arg0.getCode()==KeyCode.LEFT)
+					{
+						stepCounter.set(""+(++steps));
 						setUserCommand("move left");
+					}
 					if (arg0.getCode()==KeyCode.RIGHT)
+					{
+						stepCounter.set(""+(++steps));
 						setUserCommand("move right");
+					}
 				}
 
 
@@ -145,10 +163,10 @@ public class MainWindowController extends Observable  implements Initializable,V
 	 {
 		String fileName= chosen.getName();
 		this.setUserCommand("load "+fileName);
+		 this.startCounter();
 
 
 	 }
-	 this.startCounter();
 
 	}
 	public SokobanDisplayer getSd() {
