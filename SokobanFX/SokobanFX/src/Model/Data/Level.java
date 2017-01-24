@@ -26,11 +26,20 @@ public class Level implements Serializable{
 		}
 		public boolean checkIfFinish()
 		{
-			for (Item it: BoxList)
-				if (!it.isOnDest())
-					return false;
-			System.out.println("finish level..");
-			return true;
+			if(!BoxList.isEmpty())
+			{
+				for (Item it: BoxList)
+				{
+					if (!it.isOnDest())
+					{
+						
+						return false;
+					}
+				}
+	
+				return true;
+			}
+			return false;
 		}
 		public void setInPlace(Item it, Position dest)
 		{
