@@ -11,53 +11,45 @@ import view.ViewInterface;
 
 public class MyServer  implements ViewInterface {
 	private MyClientHandler ch;
-	private int port=1334;
+	private int port=2347;
 	private boolean stop;
 
-	
+
 	public void runServer() throws IOException
 	{
 		ServerSocket server=new ServerSocket(port);
-		server.setSoTimeout(100000000);
+		server.setSoTimeout(20000);
 		while(!stop)
 		{
 			try{
 				Socket aClient=server.accept();
 				new Thread(new Runnable() {
-					
+
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
-						Platform.runLater(new Runnable() {
-							
-							@Override
-							public void run() {
-								// TODO Auto-generated method stub
-								try {
-									
-									ch.handleClient(aClient.getInputStream(),aClient.getOutputStream());
-									aClient.getInputStream().close();
-									aClient.getOutputStream().close();
-									aClient.close();
-									stop=true;
-									ch.setCmd("exit");
-								} catch (IOException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-							}
-						});
-					
-						
+						try {
+
+							ch.handleClient(aClient.getInputStream(),aClient.getOutputStream());
+							aClient.getInputStream().close();
+							aClient.getOutputStream().close();
+							aClient.close();
+							stop=true;
+							ch.setCmd("exit");
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
 					}
 				}).start();
-			
+
 			}
 			catch (SocketTimeoutException e)
 			{
-				
+
 			}
-		
+
 		}
 		server.close();
 	}
