@@ -1,12 +1,16 @@
 package view;
 
 
+import java.io.File;
+
 import Controler.SokobanController;
 import Controller.Server.MyServer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 
@@ -35,7 +39,14 @@ public class Main extends Application {
 			});
 		
 			//t1.start();
+			
+			
+			//start play the song
 			primaryStage.show();
+			String musicFile="./resources/Music/song.mp3";
+			Media song=new Media(new File(musicFile).toURI().toString());
+			MediaPlayer mp=new MediaPlayer(song);
+			mp.play();
 			
 		} catch(Exception e) {
 			e.printStackTrace();

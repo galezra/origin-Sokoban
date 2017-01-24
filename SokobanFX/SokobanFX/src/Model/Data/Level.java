@@ -29,6 +29,7 @@ public class Level implements Serializable{
 			for (Item it: BoxList)
 				if (!it.isOnDest())
 					return false;
+			System.out.println("finish level..");
 			return true;
 		}
 		public void setInPlace(Item it, Position dest)

@@ -78,7 +78,7 @@ public class SokobanController implements Observer {
 		}
 		if (arg0==MM)
 		{
-			
+			MWC.getSd().setDone(MM.getCurrentLevel().checkIfFinish());
 			MWC.setArr((MM.getCurrentLevel().toCharArray()));
 			MWC.setSteps(MM.getCurrentLevel().getStepsCounter());
 			ms.getCh().setIfHappend(true);

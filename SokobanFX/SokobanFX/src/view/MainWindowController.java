@@ -55,7 +55,7 @@ public class MainWindowController extends Observable  implements Initializable,V
 	Text mySteps;
 	StringProperty Counter;
 	StringProperty stepCounter;
-	String musicFile="./resources/Music/song.mp3";
+	
 
 
 
@@ -156,9 +156,7 @@ public class MainWindowController extends Observable  implements Initializable,V
 
 		hm=new HashMap<String,String>();
 		this.readKeysFromXML();
-		Media song=new Media(new File(musicFile).toURI().toString());
-		MediaPlayer mp=new MediaPlayer(song);
-		mp.play();
+		
 		Counter=new SimpleStringProperty();
 		stepCounter=new SimpleStringProperty();
 		

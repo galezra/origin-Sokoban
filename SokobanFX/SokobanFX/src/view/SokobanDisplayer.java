@@ -25,6 +25,7 @@ public class SokobanDisplayer extends Canvas  {
 	private StringProperty floor;
 	private StringProperty destination;
 	private StringProperty open;
+	private StringProperty over;
 	
 	public boolean isDone() {
 		return isDone;
@@ -41,6 +42,7 @@ public class SokobanDisplayer extends Canvas  {
 		this.destination=new SimpleStringProperty();
 		this.floor=new SimpleStringProperty();
 		this.open=new SimpleStringProperty();
+		this.over=new SimpleStringProperty();
 
 	}
 	public SokobanDisplayer(double width, double height) {
@@ -58,6 +60,8 @@ public class SokobanDisplayer extends Canvas  {
 			HM.put('#', new Image(new FileInputStream(this.getWall())));
 			HM.put('o', new Image(new FileInputStream(this.getDestination())));
 			HM.put('X', new Image(new FileInputStream(this.getOpen())));
+			HM.put('D', new Image(new FileInputStream(this.getOver())));
+
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -73,28 +77,36 @@ public class SokobanDisplayer extends Canvas  {
 		{
 			gc.clearRect(0, 0, W, H);
 
+		
+			
 			if (this.isDone)
 			{
-				
+				gc.clearRect(0, 0, W, H);
+
+				A=HM.get('D');
+				gc.drawImage(A, 0, 0, W, H);
 			}
-			
 			else
 			{
-			for (int i=0;i<cRow;i++)
-				for(int j=0;j<cCol;j++)
-				{
-					
-					A=HM.get(this.levelData[i][j]);
-					gc.drawImage(A, j*w, i*h, w, h);
-					
-				}
+				for (int i=0;i<cRow;i++)
+					for(int j=0;j<cCol;j++)
+					{
+						
+						A=HM.get(this.levelData[i][j]);
+						gc.drawImage(A, j*w, i*h, w, h);
+						
+					}
 			}
+			
+		
+			
 		}
 		else
 		{
 			A=HM.get('X');
 			gc.drawImage(A, 0, 0, W, H);
 		}
+		
 	}
 	public char[][] getLevelData() {
 		return levelData;
@@ -109,6 +121,13 @@ public class SokobanDisplayer extends Canvas  {
 		}
 		
 		this.redraw();
+	}
+	
+	public String getOver() {
+		return over.get();
+	}
+	public void setOver(String over) {
+		this.over.set(over);
 	}
 	public double getcRow() {
 		return cRow;
