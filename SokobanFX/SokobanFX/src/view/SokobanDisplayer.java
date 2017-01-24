@@ -93,8 +93,7 @@ public class SokobanDisplayer extends Canvas  {
 			this.levelData = levelData;
 			
 		}
-		else
-			System.out.println("level is null");
+		
 		this.redraw();
 	}
 	public double getcRow() {

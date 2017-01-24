@@ -23,17 +23,27 @@ public class SokobanController implements Observer {
 	private CommandsFactory cF;
 	private MyServer ms;
 	
-	
-	public void runUserCommand(String cmd)
+	public void runServer()
+	{
+		try {
+			ms.runServer();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public boolean runUserCommand(String cmd)
 	{
 		CommandCreator cC;
 		FunctionalCommand command;
 
 		String[]s=cmd.split(" ");
+		System.out.println(s[0]);
 		cC=cF.getCM().get(s[0]);
 		if (cC!=null)
 		{
 			command=cC.create();
+			
 			if (command!=null)
 			{//add this command to my controller queue
 				command.setStr(cmd);
@@ -51,17 +61,19 @@ public class SokobanController implements Observer {
 						e.printStackTrace();
 					}
 					this.MM.setCurrentLevel(command.getLev());
-									
+					return true;				
 				
 			}
 		}
+		return false;
 	}
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub		
-		
+		boolean ifHappend=false;
 		if (arg0==ms.getCh())
 		{
-			this.runUserCommand(this.ms.getUserCommand());
+			ifHappend=this.runUserCommand(this.ms.getUserCommand());
+			ms.getCh().setIfHappend(ifHappend);
 		}
 		if (arg0==MM)
 		{
@@ -109,11 +121,15 @@ public class SokobanController implements Observer {
 		// TODO Auto-generated constructor stub
 		this.MM=new MyModel();
 
-		MM.addObserver(this);
-		this.ms=new MyServer();
-		ms.getCh().addObserver(this);
+		
+	
 		this.controller=new Controller();
 		this.cF=new CommandsFactory();
+		MM.addObserver(this);
+		this.ms=new MyServer();
+		
+		ms.getCh().addObserver(this);
+		
 	}
 
 	public SokobanController(MainWindowController  mwc, MyModel mM) {
