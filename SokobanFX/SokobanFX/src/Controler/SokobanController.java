@@ -7,10 +7,12 @@ import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
+import Controller.Server.MyServer;
 import Model.MyModel;
 import Model.Data.MyTextLevelLoader;
 import view.MainWindowController;
 import view.MyView;
+import view.ViewInterface;
 
 
 
@@ -19,15 +21,48 @@ public class SokobanController implements Observer {
 	private MyModel MM;
 	private Controller controller;
 	private CommandsFactory cF;
+	private MyServer ms;
 	
 	
-	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		
+	public void runUserCommand(String cmd)
+	{
 		CommandCreator cC;
-		FunctionalCommand cmd;
+		FunctionalCommand command;
+
+		String[]s=cmd.split(" ");
+		cC=cF.getCM().get(s[0]);
+		if (cC!=null)
+		{
+			command=cC.create();
+			if (command!=null)
+			{//add this command to my controller queue
+				command.setStr(cmd);
+				this.controller.getmQ().add(command);
+				/*get the first command in my queue,but in our case this will be
+				the command i entered in the line above*/
+				command=(FunctionalCommand)controller.getCmd();
+				command.setLev(this.MM.getCurrentLevel());
+					try {
+						
+						command.execute();
+						
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					this.MM.setCurrentLevel(command.getLev());
+									
+				
+			}
+		}
+	}
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub		
 		
-		
+		if (arg0==ms.getCh())
+		{
+			this.runUserCommand(this.ms.getUserCommand());
+		}
 		if (arg0==MM)
 		{
 			
@@ -35,45 +70,8 @@ public class SokobanController implements Observer {
 			MWC.setSteps(MM.getCurrentLevel().getStepsCounter());
 		}
 		else if (arg0==MWC)
-		{
-			
-				
-				//getting the specific command by string
-			
-			String []s=MWC.getUserCommand().split(" ");
-
-			cC=cF.getCM().get(s[0]);
-			
-			if (cC!=null)
-			{
-				
-				cmd=cC.create();
-				
-				if (cmd!=null)
-				{//add this command to my controller queue
-					cmd.setStr(MWC.getUserCommand());
-					this.controller.getmQ().add(cmd);
-					/*get the first command in my queue,but in our case this will be
-					the command i entered in the line above*/
-					cmd=(FunctionalCommand)controller.getCmd();
-					cmd.setLev(this.MM.getCurrentLevel());
-						try {
-							
-							cmd.execute();
-							
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						this.MM.setCurrentLevel(cmd.getLev());
-										
-					
-				}
-			}
-			
-			
-			
-			
+		{			
+			this.runUserCommand(MWC.getUserCommand());
 			
 			
 		}
@@ -112,6 +110,8 @@ public class SokobanController implements Observer {
 		this.MM=new MyModel();
 
 		MM.addObserver(this);
+		this.ms=new MyServer();
+		ms.getCh().addObserver(this);
 		this.controller=new Controller();
 		this.cF=new CommandsFactory();
 	}

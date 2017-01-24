@@ -2,8 +2,13 @@ package view;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import java.io.File;
 
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
@@ -12,11 +17,14 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
+import org.omg.CORBA.portable.OutputStream;
 
 import Controler.SokobanController;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -58,6 +66,26 @@ public class MainWindowController extends Observable  implements Initializable,V
 	}
 
 
+	public void setFocus()
+	{
+		this.sd.focusedProperty().addListener(new ChangeListener<Boolean>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean s) {
+				// TODO Auto-generated method stub
+				Platform.runLater(new Runnable() {
+					
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						sd.requestFocus();
+						
+					}
+				});
+				
+			}
+		});
+	}
 	public void setSteps(int steps) {
 		this.steps = steps;
 		stepCounter.set(""+steps);
@@ -80,6 +108,13 @@ public class MainWindowController extends Observable  implements Initializable,V
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+	
+		KeyCode up=KeyCode.UP;
+		KeyCode down=KeyCode.DOWN;
+		KeyCode right=KeyCode.RIGHT;
+		KeyCode left=KeyCode.LEFT;
+
+	
 		Media song=new Media(new File(musicFile).toURI().toString());
 		MediaPlayer mp=new MediaPlayer(song);
 		mp.play();
@@ -93,29 +128,30 @@ public class MainWindowController extends Observable  implements Initializable,V
 		mySteps.textProperty().bind(stepCounter);
 		
 		sd.addEventFilter(MouseEvent.MOUSE_CLICKED, (e)->sd.requestFocus());
-
+		//this.setFocus();
 		sd.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
 			@Override
 			public void handle(KeyEvent arg0) {
 				// TODO Auto-generated method stub
+		
 
 				if(arr!=null)
 				{
-					if (arg0.getCode()==KeyCode.UP)
+					if (arg0.getCode()==up)
 					{
 						setUserCommand("move up");
 						
 					}
-					if (arg0.getCode()==KeyCode.DOWN)
+					if (arg0.getCode()==down)
 					{
 						setUserCommand("move down");
 					}
-					if (arg0.getCode()==KeyCode.LEFT)
+					if (arg0.getCode()==left)
 					{
 						setUserCommand("move left");
 					}
-					if (arg0.getCode()==KeyCode.RIGHT)
+					if (arg0.getCode()==right)
 					{
 						setUserCommand("move right");
 					}
