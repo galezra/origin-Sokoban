@@ -11,8 +11,8 @@ import view.ViewInterface;
 
 public class MyServer  implements ViewInterface {
 	private MyClientHandler ch;
-	private int port=8887;
-	private boolean stop;
+	private int port=8871;
+	private boolean stop=false;
 
 
 	public void runServer() throws IOException
@@ -31,11 +31,12 @@ public class MyServer  implements ViewInterface {
 						try {
 
 							ch.handleClient(aClient.getInputStream(),aClient.getOutputStream());
+							
 							aClient.getInputStream().close();
 							aClient.getOutputStream().close();
 							aClient.close();
 							stop=true;
-							ch.setCmd("exit");
+							//ch.setCmd("exit");
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();

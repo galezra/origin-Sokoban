@@ -38,7 +38,6 @@ public class SokobanController implements Observer {
 		FunctionalCommand command;
 
 		String[]s=cmd.split(" ");
-		System.out.println(s[0]);
 		cC=cF.getCM().get(s[0]);
 		if (cC!=null)
 		{
@@ -72,14 +71,17 @@ public class SokobanController implements Observer {
 		boolean ifHappend=false;
 		if (arg0==ms.getCh())
 		{
+			
 			ifHappend=this.runUserCommand(this.ms.getUserCommand());
 			ms.getCh().setIfHappend(ifHappend);
+			this.getMWC().getSd().setDone(this.MM.getCurrentLevel().checkIfFinish());
 		}
 		if (arg0==MM)
 		{
 			
 			MWC.setArr((MM.getCurrentLevel().toCharArray()));
 			MWC.setSteps(MM.getCurrentLevel().getStepsCounter());
+			ms.getCh().setIfHappend(true);
 		}
 		else if (arg0==MWC)
 		{			

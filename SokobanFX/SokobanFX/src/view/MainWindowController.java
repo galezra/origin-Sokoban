@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Observable;
 import java.util.ResourceBundle;
 import java.util.Timer;
@@ -43,6 +44,7 @@ public class MainWindowController extends Observable  implements Initializable,V
 	private char[][]arr;
 	int count;
 	int steps;
+	HashMap<String,String> hm;
 	@FXML
 	Text myText;
 	
@@ -57,6 +59,48 @@ public class MainWindowController extends Observable  implements Initializable,V
 
 
 
+	public void initializeDefaultKeys()
+	{
+		hm.put("UP", "move up");
+		hm.put("DOWN", "move down");
+		hm.put("LEFT", "move left");
+		hm.put("RIGHT", "move right");
+
+	}
+	public void readKeysFromXML()
+	{
+		XMLDecoder xd;
+		try {
+			xd = new XMLDecoder(new FileInputStream(new File("./resources/keys.xml")));
+			hm.put((String) xd.readObject(), "move up");
+			hm.put( (String) xd.readObject(), "move down");
+			hm.put( (String) xd.readObject(), "move right");
+			hm.put( (String) xd.readObject(), "move left");
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	public void writeDefaultKeysToXML()
+	{
+		try {
+			XMLEncoder xe=new XMLEncoder(new FileOutputStream(new File("./resources/Defaultkeys.xml")));
+			xe.writeObject("UP");
+			xe.writeObject("DOWN");
+			xe.writeObject("RIGHT");
+			xe.writeObject("LEFT");
+			xe.close();
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
 	public MainWindowController(){
 	
 	
@@ -109,12 +153,9 @@ public class MainWindowController extends Observable  implements Initializable,V
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 	
-		KeyCode up=KeyCode.UP;
-		KeyCode down=KeyCode.DOWN;
-		KeyCode right=KeyCode.RIGHT;
-		KeyCode left=KeyCode.LEFT;
 
-	
+		hm=new HashMap<String,String>();
+		this.readKeysFromXML();
 		Media song=new Media(new File(musicFile).toURI().toString());
 		MediaPlayer mp=new MediaPlayer(song);
 		mp.play();
@@ -138,23 +179,8 @@ public class MainWindowController extends Observable  implements Initializable,V
 
 				if(arr!=null)
 				{
-					if (arg0.getCode()==up)
-					{
-						setUserCommand("move up");
-						
-					}
-					if (arg0.getCode()==down)
-					{
-						setUserCommand("move down");
-					}
-					if (arg0.getCode()==left)
-					{
-						setUserCommand("move left");
-					}
-					if (arg0.getCode()==right)
-					{
-						setUserCommand("move right");
-					}
+				
+					setUserCommand(hm.get(""+arg0.getCode()));
 				}
 
 

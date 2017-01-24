@@ -34,7 +34,7 @@ public class Main extends Application {
 				}
 			});
 		
-			t1.start();
+			//t1.start();
 			primaryStage.show();
 			
 		} catch(Exception e) {

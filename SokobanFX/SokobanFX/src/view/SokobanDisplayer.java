@@ -16,6 +16,7 @@ import javafx.scene.paint.Color;
 
 public class SokobanDisplayer extends Canvas  {
 	private char[][]levelData;
+	private boolean isDone=false;
 	private double cRow;
 	private double cCol;
 	private StringProperty wall;
@@ -24,6 +25,13 @@ public class SokobanDisplayer extends Canvas  {
 	private StringProperty floor;
 	private StringProperty destination;
 	private StringProperty open;
+	
+	public boolean isDone() {
+		return isDone;
+	}
+	public void setDone(boolean isDone) {
+		this.isDone = isDone;
+	}
 	public SokobanDisplayer() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -63,10 +71,15 @@ public class SokobanDisplayer extends Canvas  {
 		Image A=null;
 		if (this.levelData!=null)
 		{
-			
-			
-		
 			gc.clearRect(0, 0, W, H);
+
+			if (this.isDone)
+			{
+				
+			}
+			
+			else
+			{
 			for (int i=0;i<cRow;i++)
 				for(int j=0;j<cCol;j++)
 				{
@@ -75,6 +88,7 @@ public class SokobanDisplayer extends Canvas  {
 					gc.drawImage(A, j*w, i*h, w, h);
 					
 				}
+			}
 		}
 		else
 		{

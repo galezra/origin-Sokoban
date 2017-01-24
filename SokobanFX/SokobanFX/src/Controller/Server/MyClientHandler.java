@@ -27,9 +27,10 @@ public class MyClientHandler extends Observable implements ClientHandler {
 		{
 			try {
 				s=new BufferedReader(new InputStreamReader(in)).readLine();
-				System.out.println(s);
-				if(s=="exit")
+			
+				if(s.compareTo("exit1")==0)
 				{
+				
 					this.stop=true;
 					bw.write("bye...");
 
@@ -54,6 +55,7 @@ public class MyClientHandler extends Observable implements ClientHandler {
 			}
 			
 		}
+		System.out.println("finish talking");
 		
 	}
 	public boolean isIfHappend() {
