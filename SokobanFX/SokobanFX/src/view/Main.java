@@ -20,12 +20,23 @@ public class Main extends Application {
 			SokobanController sc=new SokobanController();
 			mwc.addObserver(sc);
 			sc.setMWC(mwc);
-			sc.runServer();
+			//sc.runServer();
 			Scene scene = new Scene(root,650,650);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
+			
+			Thread t1=new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					sc.runServer();
+				}
+			});
+		
+			t1.start();
 			primaryStage.show();
-
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
