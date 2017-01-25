@@ -11,7 +11,7 @@ import view.ViewInterface;
 
 public class MyServer  implements ViewInterface {
 	private MyClientHandler ch;
-	private int port=3350;
+	private int port=6666;
 	private boolean stop=false;
 
 
@@ -25,7 +25,7 @@ public class MyServer  implements ViewInterface {
 	public void runServer() throws IOException
 	{
 		ServerSocket server=new ServerSocket(port);
-		server.setSoTimeout(1000);
+		server.setSoTimeout(20000);
 		while(!stop)
 		{
 			try{
@@ -38,13 +38,9 @@ public class MyServer  implements ViewInterface {
 						try {
 
 							ch.handleClient(aClient.getInputStream(),aClient.getOutputStream());
-							
-						
-							stop=true;
-							aClient.getInputStream().close();
-							aClient.getOutputStream().close();
-
 							aClient.close();
+							ch.setStop(false);
+							
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();

@@ -81,8 +81,7 @@ public class SokobanController implements Observer {
 	
 			if (arg0==ms.getCh())
 			{
-				if(this.ms.getUserCommand().compareTo("exit".toLowerCase())!=0)
-				{
+		
 					ifHappend=this.runUserCommand(this.ms.getUserCommand());
 					this.getMWC().getSd().setDone(this.MM.getCurrentLevel().checkIfFinish());
 	
@@ -101,14 +100,8 @@ public class SokobanController implements Observer {
 						this.ms.getCh().setMsgToUser("fail");
 	
 					}
-				}
-				else
-				{
-					System.out.println("got exit command");
-					this.controller.stop();
-					this.MWC.closeAllThreads();
-					this.ms.closeAllSockets();
-				}
+				
+			
 			}
 			if (arg0==MM)
 			{

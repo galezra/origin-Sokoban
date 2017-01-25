@@ -30,9 +30,18 @@ public class MyClientHandler extends Observable implements ClientHandler {
 		{
 			try {
 				s=new BufferedReader(new InputStreamReader(in)).readLine();
-				this.setCmd(s);
+				if (s.compareTo("exit".toLowerCase())==0)
+				{
+					
+					stop=true;
+				}
+				else
+				{
+					this.setCmd(s);
+					bw.println(msgToUser);
+
+				}
 				
-				bw.println(msgToUser);
 
 				
 			} catch (IOException e) {
@@ -41,7 +50,8 @@ public class MyClientHandler extends Observable implements ClientHandler {
 			}
 			
 		}
-		System.out.println("finish talking");
+		bw.println("bye");
+		System.out.println("finish talking and waiting to another client");
 		
 	}
 	
