@@ -17,6 +17,7 @@ public class MyClientHandler extends Observable implements ClientHandler {
 	private String cmd;
 	private boolean stop;
 	@Override
+
 	public void handleClient(InputStream in, OutputStream out) {
 		// TODO Auto-generated method stub
 		String s=new String();
@@ -26,13 +27,18 @@ public class MyClientHandler extends Observable implements ClientHandler {
 		while(!stop)
 		{
 			try {
+				bw.write("check");
 				s=new BufferedReader(new InputStreamReader(in)).readLine();
-			
-				if(s.compareTo("exit1")==0)
+				
+				if(s.compareTo("exitProg")==0)
 				{
 				
+					this.saveLevelBeforExit(in, out);
 					this.stop=true;
 					bw.write("bye...");
+					
+					
+					
 
 				}
 				
@@ -57,6 +63,29 @@ public class MyClientHandler extends Observable implements ClientHandler {
 		}
 		System.out.println("finish talking");
 		
+	}
+	public void saveLevelBeforExit(InputStream in,OutputStream out)
+	{
+		String s;
+		BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(out));
+		BufferedReader br=new BufferedReader(new InputStreamReader(in));
+		try {
+			bw.write("befor exit the game,do you want to save the level?");
+			
+			s=br.readLine();
+			if (s.compareTo("yes".toLowerCase())==0)
+			{
+				bw.write("enter file name with extnesion /.txt/.xml/.obj/" );
+				s=br.readLine();
+				this.setCmd("save "+s);
+
+			}
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public boolean isIfHappend() {
 		return ifHappend;

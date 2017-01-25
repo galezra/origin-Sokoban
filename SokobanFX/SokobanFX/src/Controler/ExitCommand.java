@@ -19,6 +19,7 @@ public class ExitCommand extends FunctionalCommand implements Command {
 		
 		if (this.getStr()=="exit")
 		{
+			System.out.println("exitCMD check");
 			System.out.println("befor you exit, do you want to save your level? Yes/No?");
 			
 			String s=sc.next();

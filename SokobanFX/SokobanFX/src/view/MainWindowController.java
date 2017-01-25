@@ -67,6 +67,20 @@ public class MainWindowController extends Observable  implements Initializable,V
 		hm.put("RIGHT", "move right");
 
 	}
+	public void initializeLettersKeys()
+	{
+		hm.put("W", "move up");
+		hm.put("S", "move down");
+		hm.put("A", "move left");
+		hm.put("D", "move right");
+	}
+	public void initializeNumbersKeys()
+	{
+		hm.put("8", "move up");
+		hm.put("2", "move down");
+		hm.put("4", "move left");
+		hm.put("6", "move right");
+	}
 	public void readKeysFromXML()
 	{
 		XMLDecoder xd;

@@ -29,7 +29,7 @@ public class Main extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			
-			Thread t1=new Thread(new Runnable() {
+			Thread serverThread=new Thread(new Runnable() {
 				
 				@Override
 				public void run() {
@@ -37,16 +37,28 @@ public class Main extends Application {
 					sc.runServer();
 				}
 			});
+			Thread musicThread=new Thread(new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							String musicFile="./resources/Music/song.mp3";
+
+							Media song=new Media(new File(musicFile).toURI().toString());
+							MediaPlayer mp=new MediaPlayer(song);
+							mp.play();
+							
+						}
+					});
 		
-			//t1.start();
+			serverThread.start();
+			musicThread.start();
 			
 			
 			//start play the song
 			primaryStage.show();
-			String musicFile="./resources/Music/song.mp3";
-			Media song=new Media(new File(musicFile).toURI().toString());
-			MediaPlayer mp=new MediaPlayer(song);
-			mp.play();
+			
+			
 			
 		} catch(Exception e) {
 			e.printStackTrace();

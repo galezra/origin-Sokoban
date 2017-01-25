@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
- <?import view.SokobanDisplayer?>
+<?import view.SokobanDisplayer?>
 
 <BorderPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainWindowController">
    <top>
@@ -36,6 +36,13 @@
               <MenuItem mnemonicParsing="false" text="About" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Keys">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#initializeDefaultKeys" text="Default (Arrows)" />
+                  <MenuItem mnemonicParsing="false" onAction="#initializeNumbersKeys" text="Numbers (8,6,4,2)" />
+                  <MenuItem mnemonicParsing="false" onAction="#initializeLettersKeys" text="Letters (W,D,S,A)" />
+              </items>
+            </Menu>
         </menus>
       </MenuBar>
    </top>
@@ -90,7 +97,7 @@
       <VBox prefHeight="500.0" prefWidth="233.0" BorderPane.alignment="CENTER" />
    </right>
    <center>
-<SokobanDisplayer fx:id="sd" height="500.0" width="500.0" BorderPane.alignment="CENTER" wall="./resources/Images/wall1.jpg"  character="./resources/Images/character1.png" box="./resources/Images/box.jpg" floor="./resources/Images/floor.jpg" destination="./resources/Images/destination.jpg" open="./resources/Images/open.jpg" over="./resources/Images/over.gif"  />
+ <SokobanDisplayer fx:id="sd" height="500.0" width="500.0" BorderPane.alignment="CENTER" wall="./resources/Images/wall1.jpg"  character="./resources/Images/character1.png" box="./resources/Images/box.jpg" floor="./resources/Images/floor.jpg" destination="./resources/Images/destination.jpg" open="./resources/Images/open.jpg" over="./resources/Images/over.gif"  />
       
    </center>
    <bottom>
