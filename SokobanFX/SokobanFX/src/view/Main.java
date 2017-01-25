@@ -52,7 +52,7 @@ public class Main extends Application {
 					});
 		
 			serverThread.start();
-			musicThread.start();
+			//musicThread.start();
 			
 			
 			//start play the song

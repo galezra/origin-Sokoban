@@ -9,9 +9,29 @@ import view.MyView;
 
 public class FunctionalCommand implements Command {
 	private MyModel mM;
-	private MyView mV;
+	
 	private String str;
 
+	public void updateCommand(FunctionalCommand fc)
+	{
+		
+		this.mM.setCurrentLevel(fc.mM.getCurrentLevel());
+	}
+	public FunctionalCommand() {
+		super();
+		// TODO Auto-generated constructor stub
+		mM=new MyModel();
+		str="";
+		
+	}
+	
+	public MyModel getmM() {
+		return mM;
+	}
+	public void setmM(MyModel mM) {
+		this.mM = mM;
+		this.setLev(mM.getCurrentLevel());
+	}
 	public String getStr() {
 		return str;
 	}
@@ -25,14 +45,14 @@ public class FunctionalCommand implements Command {
 	public void setLev(Level lev) {
 		
 		mM.setCurrentLevel(lev);
-		mV.setLev(lev);
+		
 	}
 
 	public FunctionalCommand(Level lev) {
 		super();
 		// TODO Auto-generated constructor stub
 		this.mM=new MyModel();
-		this.mV=new MyView();
+		
 		this.setLev(lev);
 		
 	}
@@ -40,7 +60,7 @@ public class FunctionalCommand implements Command {
 	public FunctionalCommand(MyModel mM, MyView mV, String str) {
 		super();
 		this.mM = mM;
-		this.mV = mV;
+		
 		this.str = str;
 	}
 	@Override

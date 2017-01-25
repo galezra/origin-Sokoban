@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.PrintStream;
 import java.util.Observable;
 
 import javafx.fxml.FXMLLoader;
@@ -15,45 +16,23 @@ public class MyClientHandler extends Observable implements ClientHandler {
 
 	private boolean ifHappend;
 	private String cmd;
+	private String msgToUser;
 	private boolean stop;
 	@Override
 
 	public void handleClient(InputStream in, OutputStream out) {
 		// TODO Auto-generated method stub
 		String s=new String();
-		BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(out));
+		PrintStream bw=new PrintStream(out);
 
 		System.out.println("start talking");
 		while(!stop)
 		{
 			try {
-				bw.write("check");
 				s=new BufferedReader(new InputStreamReader(in)).readLine();
-				
-				if(s.compareTo("exitProg")==0)
-				{
-				
-					this.saveLevelBeforExit(in, out);
-					this.stop=true;
-					bw.write("bye...");
-					
-					
-					
+				this.setCmd(s);
+				bw.println(msgToUser);// stream the conversation to the client // change the "S"
 
-				}
-				
-				else
-				{
-					this.setCmd(s);
-					if (this.ifHappend)
-					{
-						bw.write("success...");
-					}
-					else
-					{
-						bw.write("fail...");
-					}
-				}
 				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -64,6 +43,15 @@ public class MyClientHandler extends Observable implements ClientHandler {
 		System.out.println("finish talking");
 		
 	}
+	
+	public String getMsgToUser() {
+		return msgToUser;
+	}
+
+	public void setMsgToUser(String msgToUser) {
+		this.msgToUser = msgToUser;
+	}
+
 	public void saveLevelBeforExit(InputStream in,OutputStream out)
 	{
 		String s;

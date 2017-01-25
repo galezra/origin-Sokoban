@@ -11,10 +11,14 @@ import view.ViewInterface;
 
 public class MyServer  implements ViewInterface {
 	private MyClientHandler ch;
-	private int port=3340;
+	private int port=3347;
 	private boolean stop=false;
 
 
+	public void closeAllSockets()
+	{
+		this.stop=true;
+	}
 	public void runServer() throws IOException
 	{
 		ServerSocket server=new ServerSocket(port);

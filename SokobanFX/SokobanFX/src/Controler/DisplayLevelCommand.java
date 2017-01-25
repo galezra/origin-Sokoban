@@ -10,7 +10,7 @@ public class DisplayLevelCommand extends FunctionalCommand{
 	}
 	public void execute() {
 		// TODO Auto-generated method stub
-		this.getLev().print();
+		//this.getLev().print();
 
 	}
 

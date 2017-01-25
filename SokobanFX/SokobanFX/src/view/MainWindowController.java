@@ -59,6 +59,25 @@ public class MainWindowController extends Observable  implements Initializable,V
 
 
 
+	public String getArrByString()
+	{
+		if (arr!=null)
+		{
+			String s="";
+			for (int i=0;i<arr.length;i++)
+			{
+				for(int j=0;j<arr[0].length;j++)
+					s+=(arr[i][j]);
+				s+="\n";
+			}
+			return s;
+		}
+		return "level is empty";
+	}
+	public void closeAllThreads()
+	{
+		
+	}
 	public void initializeDefaultKeys()
 	{
 		hm.put("UP", "move up");
@@ -153,7 +172,7 @@ public class MainWindowController extends Observable  implements Initializable,V
 	public void startCounter()
 	{
 	
-		
+		setCount(0);
 		Timer t=new  Timer();
 		t.scheduleAtFixedRate(new TimerTask() {
 					
@@ -229,7 +248,7 @@ public class MainWindowController extends Observable  implements Initializable,V
 	}
 	public void exit()
 	{
-		this.setUserCommand("exit game");//without saving the game
+		this.setUserCommand("exit");//without saving the game
 	}
 	public void saveFileMethod()
 	{
@@ -265,6 +284,7 @@ public class MainWindowController extends Observable  implements Initializable,V
 		String fileName= chosen.getName();
 		this.setUserCommand("load "+fileName);
 		 this.startCounter();
+		 this.steps=0;
 
 
 	 }
