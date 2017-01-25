@@ -9,9 +9,9 @@ import javafx.application.Platform;
 import view.ViewInterface;
 
 
-public class MyServer  implements ViewInterface {
+public class MyServer   {
 	private MyClientHandler ch;
-	private int port=6666;
+	private int port=6675;
 	private boolean stop=false;
 
 
@@ -25,7 +25,7 @@ public class MyServer  implements ViewInterface {
 	public void runServer() throws IOException
 	{
 		ServerSocket server=new ServerSocket(port);
-		server.setSoTimeout(20000);
+		server.setSoTimeout(1000);
 		while(!stop)
 		{
 			try{
@@ -90,7 +90,7 @@ public class MyServer  implements ViewInterface {
 		this.stop = stop;
 	}
 
-	@Override
+
 	public String getUserCommand() {
 		// TODO Auto-generated method stub
 		return this.ch.getCmd();

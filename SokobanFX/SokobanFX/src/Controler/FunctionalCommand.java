@@ -3,12 +3,13 @@ package Controler;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import Model.ModelInterface;
 import Model.MyModel;
 import Model.Data.Level;
 import view.MyView;
 
 public class FunctionalCommand implements Command {
-	private MyModel mM;
+	private ModelInterface mM;
 	
 	private String str;
 
@@ -25,10 +26,10 @@ public class FunctionalCommand implements Command {
 		
 	}
 	
-	public MyModel getmM() {
+	public ModelInterface getmM() {
 		return mM;
 	}
-	public void setmM(MyModel mM) {
+	public void setmM(ModelInterface mM) {
 		this.mM = mM;
 		this.setLev(mM.getCurrentLevel());
 	}
@@ -57,7 +58,7 @@ public class FunctionalCommand implements Command {
 		
 	}
 
-	public FunctionalCommand(MyModel mM, MyView mV, String str) {
+	public FunctionalCommand(ModelInterface mM, MyView mV, String str) {
 		super();
 		this.mM = mM;
 		

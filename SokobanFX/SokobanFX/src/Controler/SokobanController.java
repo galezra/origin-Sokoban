@@ -8,6 +8,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import Controller.Server.MyServer;
+import Model.ModelInterface;
 import Model.MyModel;
 import Model.Data.MyTextLevelLoader;
 import view.MainWindowController;
@@ -17,8 +18,8 @@ import view.ViewInterface;
 
 
 public class SokobanController implements Observer {
-	private MainWindowController MWC;
-	private MyModel MM;
+	private ViewInterface mv;
+	private ModelInterface MM;
 	private Controller controller;
 	private CommandsFactory cF;
 	private MyServer ms;
@@ -35,7 +36,7 @@ public class SokobanController implements Observer {
 	public void closeAll()
 	{
 		this.controller.finishAllCommands();
-		this.MWC.closeAllThreads();
+		this.mv.closeAllThreads();
 		this.ms.closeAllSockets();
 	}
 	public boolean runUserCommand(String cmd)
@@ -83,13 +84,13 @@ public class SokobanController implements Observer {
 			{
 		
 					ifHappend=this.runUserCommand(this.ms.getUserCommand());
-					this.getMWC().getSd().setDone(this.MM.getCurrentLevel().checkIfFinish());
+					this.getMv().setDone(this.MM.getCurrentLevel().checkIfFinish());
 	
 					if(ifHappend)
 					{
 						if(this.ms.getUserCommand().compareTo("display".toLowerCase())==0)
 						{
-							this.ms.getCh().setMsgToUser(""+MWC.getArrByString());
+							this.ms.getCh().setMsgToUser(""+mv.getArrByString());
 	
 						}
 						else
@@ -106,14 +107,14 @@ public class SokobanController implements Observer {
 			if (arg0==MM)
 			{
 				this.isFinish=MM.getCurrentLevel().checkIfFinish();
-				MWC.getSd().setDone(isFinish);
-				MWC.setArr((MM.getCurrentLevel().toCharArray()));
-				MWC.setSteps(MM.getCurrentLevel().getStepsCounter());
+				mv.setDone(isFinish);
+				mv.setArr((MM.getCurrentLevel().toCharArray()));
+				mv.setSteps(MM.getCurrentLevel().getStepsCounter());
 				ms.getCh().setIfHappend(true);
 			}
-			else if (arg0==MWC)
+			else if (arg0==mv)
 			{			
-				this.runUserCommand(MWC.getUserCommand());
+				this.runUserCommand(mv.getUserCommand());
 				
 				
 			}
@@ -134,40 +135,41 @@ public class SokobanController implements Observer {
 		this.cF = cF;
 	}
 
-	public void setMM(MyModel mM) {
+	public void setMM(ModelInterface mM) {
 		MM = mM;
+		this.controller.getLastCommitedCommand().setmM(mM);
 	}
 
 	
-	public MainWindowController getMWC() {
-		return MWC;
+	public ViewInterface getMv() {
+		return mv;
 	}
-	public void setMWC(MainWindowController mWC) {
-		MWC = mWC;
+	public void setMv(ViewInterface mV) {
+		mv = mV;
 	}
-	public MyModel getMM() {
+	public ModelInterface getMM() {
 		return MM;
 	}
 	public SokobanController() {
 		// TODO Auto-generated constructor stub
-		this.MM=new MyModel();
 
+	
 		
 	
 		this.controller=new Controller();
-		this.controller.getLastCommitedCommand().setmM(MM);
+		
 		this.cF=new CommandsFactory();
-		MM.addObserver(this);
+		
 		this.ms=new MyServer();
 		
 		ms.getCh().addObserver(this);
 		this.controller.start();
 	}
 
-	public SokobanController(MainWindowController  mwc, MyModel mM) {
+	public SokobanController(ViewInterface  mV, ModelInterface mM) {
 		super();
 		
-		MWC=  mwc;
+		mv=  mV;
 		MM =  mM;
 		this.controller=new Controller();
 		this.cF=new CommandsFactory();

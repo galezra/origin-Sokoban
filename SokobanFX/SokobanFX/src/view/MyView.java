@@ -37,6 +37,31 @@ public class MyView extends Observable implements ViewInterface {
 		this.lev = lev;
 		this.setChanged();
 	}
+	@Override
+	public void closeAllThreads() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public String getArrByString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void setSteps(int step) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void setArr(char[][] arr) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void setDone(boolean isDone) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 

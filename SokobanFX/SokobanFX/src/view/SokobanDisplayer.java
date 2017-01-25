@@ -51,7 +51,6 @@ public class SokobanDisplayer extends Canvas  {
 	}
 	public void redraw()
 	{
-		
 		HashMap<Character,Image> HM=new HashMap<Character,Image>();
 		try {
 			HM.put('A', new Image(new FileInputStream(this.getCharacter())));

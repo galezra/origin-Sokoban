@@ -59,6 +59,10 @@ public class MainWindowController extends Observable  implements Initializable,V
 
 
 
+	public void setDone(boolean b)
+	{
+		this.sd.setDone(b);
+	}
 	public String getArrByString()
 	{
 		if (arr!=null)
