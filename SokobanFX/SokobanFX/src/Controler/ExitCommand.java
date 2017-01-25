@@ -31,17 +31,17 @@ public class ExitCommand extends FunctionalCommand implements Command {
 				FC.setStr("save "+s);
 				FC.execute();
 				System.out.println("Thank you for playing Sokoban,exit now from the game...");
-				System.exit(0);
+				//System.exit(0);
 			}
 			else if (s=="no")
 			{
 				System.out.println("Thank you for playing Sokoban,exit now from the game...");
-				System.exit(0);
+				//System.exit(0);
 			}
 			System.out.println("wrong answer,try again in the main menu...");
 			sc.close();
 		}
-		System.exit(0);
+		//System.exit(0);
 		
 		
 	}

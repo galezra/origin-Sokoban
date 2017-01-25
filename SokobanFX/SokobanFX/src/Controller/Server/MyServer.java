@@ -11,18 +11,21 @@ import view.ViewInterface;
 
 public class MyServer  implements ViewInterface {
 	private MyClientHandler ch;
-	private int port=3347;
+	private int port=3350;
 	private boolean stop=false;
 
 
 	public void closeAllSockets()
 	{
+		//this.ch.setMsgToUser("bye");
+		//System.out.println("send bye to client");
+		this.ch.setStop(true);
 		this.stop=true;
 	}
 	public void runServer() throws IOException
 	{
 		ServerSocket server=new ServerSocket(port);
-		server.setSoTimeout(20000);
+		server.setSoTimeout(1000);
 		while(!stop)
 		{
 			try{
@@ -40,8 +43,8 @@ public class MyServer  implements ViewInterface {
 							stop=true;
 							aClient.getInputStream().close();
 							aClient.getOutputStream().close();
+
 							aClient.close();
-							ch.setCmd("exit");
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -57,6 +60,7 @@ public class MyServer  implements ViewInterface {
 			}
 
 		}
+		System.out.println("closing server");
 		server.close();
 	}
 

@@ -31,7 +31,8 @@ public class MyClientHandler extends Observable implements ClientHandler {
 			try {
 				s=new BufferedReader(new InputStreamReader(in)).readLine();
 				this.setCmd(s);
-				bw.println(msgToUser);// stream the conversation to the client // change the "S"
+				
+				bw.println(msgToUser);
 
 				
 			} catch (IOException e) {

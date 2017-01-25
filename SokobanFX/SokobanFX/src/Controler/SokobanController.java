@@ -81,25 +81,33 @@ public class SokobanController implements Observer {
 	
 			if (arg0==ms.getCh())
 			{
-				
-				ifHappend=this.runUserCommand(this.ms.getUserCommand());
-				this.getMWC().getSd().setDone(this.MM.getCurrentLevel().checkIfFinish());
-
-				if(ifHappend)
+				if(this.ms.getUserCommand().compareTo("exit".toLowerCase())!=0)
 				{
-					if(this.ms.getUserCommand().compareTo("display".toLowerCase())==0)
+					ifHappend=this.runUserCommand(this.ms.getUserCommand());
+					this.getMWC().getSd().setDone(this.MM.getCurrentLevel().checkIfFinish());
+	
+					if(ifHappend)
 					{
-						System.out.println(this.ms.getUserCommand());
-						this.ms.getCh().setMsgToUser(""+MWC.getArrByString());
-
+						if(this.ms.getUserCommand().compareTo("display".toLowerCase())==0)
+						{
+							this.ms.getCh().setMsgToUser(""+MWC.getArrByString());
+	
+						}
+						else
+							this.ms.getCh().setMsgToUser("succsses");
 					}
 					else
-						this.ms.getCh().setMsgToUser("succsses");
+					{
+						this.ms.getCh().setMsgToUser("fail");
+	
+					}
 				}
 				else
 				{
-					this.ms.getCh().setMsgToUser("fail");
-
+					System.out.println("got exit command");
+					this.controller.stop();
+					this.MWC.closeAllThreads();
+					this.ms.closeAllSockets();
 				}
 			}
 			if (arg0==MM)
