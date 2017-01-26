@@ -1,4 +1,4 @@
-package view;
+package boot;
 
 
 import java.io.File;
@@ -13,6 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import view.MainWindowController;
 
 
 public class Main extends Application {
@@ -29,7 +30,7 @@ public class Main extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
-
+			
 			mwc.addObserver(sc);
 			sc.setMv(mwc);
 			
@@ -75,7 +76,7 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 
-
+		
 
 		launch(args);
 

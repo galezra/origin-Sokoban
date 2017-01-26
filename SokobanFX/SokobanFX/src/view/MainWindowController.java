@@ -3,6 +3,7 @@ package view;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+import java.awt.event.WindowEvent;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.File;
@@ -26,6 +27,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -149,23 +151,16 @@ public class MainWindowController extends Observable  implements Initializable,V
 
 	public void setFocus()
 	{
-		this.sd.focusedProperty().addListener(new ChangeListener<Boolean>() {
-
+		Thread t=new Thread(new Runnable() {
+			
 			@Override
-			public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean s) {
+			public void run() {
 				// TODO Auto-generated method stub
-				Platform.runLater(new Runnable() {
-					
-					@Override
-					public void run() {
-						// TODO Auto-generated method stub
-						sd.requestFocus();
-						
-					}
-				});
+				sd.requestFocus();
 				
 			}
 		});
+		t.start();
 	}
 	public void setSteps(int steps) {
 		this.steps = steps;
@@ -189,8 +184,8 @@ public class MainWindowController extends Observable  implements Initializable,V
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-	
-
+		this.setFocus();
+		
 		hm=new HashMap<String,String>();
 		this.readKeysFromXML();
 		
@@ -203,7 +198,7 @@ public class MainWindowController extends Observable  implements Initializable,V
 		myText.textProperty().bind(Counter);
 		mySteps.textProperty().bind(stepCounter);
 		
-		sd.addEventFilter(MouseEvent.MOUSE_CLICKED, (e)->sd.requestFocus());
+		sd.addEventFilter(MouseEvent.MOUSE_CLICKED, (e)->sd.setFocusTraversable(true));
 		//this.setFocus();
 		sd.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
@@ -211,7 +206,7 @@ public class MainWindowController extends Observable  implements Initializable,V
 			public void handle(KeyEvent arg0) {
 				// TODO Auto-generated method stub
 		
-
+				
 				if(arr!=null)
 				{
 				

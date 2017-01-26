@@ -110,7 +110,7 @@ public class MyClientHandler extends Observable implements ClientHandler {
 	public void setCmd(String cmd) {
 		this.cmd = cmd;
 		this.setChanged();
-		this.notifyObservers();
+		this.notifyObservers(cmd);
 		
 	}
 

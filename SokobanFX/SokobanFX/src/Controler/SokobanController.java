@@ -83,12 +83,12 @@ public class SokobanController implements Observer {
 			if (arg0==ms.getCh())
 			{
 		
-					ifHappend=this.runUserCommand(this.ms.getUserCommand());
+					ifHappend=this.runUserCommand(arg1.toString());
 					this.getMv().setDone(this.MM.getCurrentLevel().checkIfFinish());
 	
 					if(ifHappend)
 					{
-						if(this.ms.getUserCommand().compareTo("display".toLowerCase())==0)
+						if(arg1.toString().compareTo("display".toLowerCase())==0)
 						{
 							this.ms.getCh().setMsgToUser(""+mv.getArrByString());
 	
@@ -114,7 +114,7 @@ public class SokobanController implements Observer {
 			}
 			else if (arg0==mv)
 			{			
-				this.runUserCommand(mv.getUserCommand());
+				this.runUserCommand(arg1.toString());
 				
 				
 			}

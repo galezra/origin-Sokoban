@@ -11,7 +11,7 @@ import view.ViewInterface;
 
 public class MyServer   {
 	private MyClientHandler ch;
-	private int port=6675;
+	private int port=6677;
 	private boolean stop=false;
 
 
