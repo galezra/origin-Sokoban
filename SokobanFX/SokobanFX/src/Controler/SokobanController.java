@@ -7,6 +7,9 @@ import java.util.Observer;
 
 import Controller.Server.MyServer;
 import Model.ModelInterface;
+import javafx.event.EventHandler;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import view.ViewInterface;
 
 
@@ -25,7 +28,30 @@ public class SokobanController implements Observer {
 	private CommandsFactory cF;
 	private MyServer ms;
 	private boolean isFinish=false;
+	private Stage myStage;
 	
+	/**sets the stage of the application
+	 * 
+	 * @param myStage out source stage
+	 */
+	public void setMyStage(Stage myStage)
+	{
+		this.myStage = myStage;
+		myStage.setOnCloseRequest(new EventHandler<WindowEvent>()
+		{
+			
+			@Override
+			public void handle(WindowEvent event)
+			{
+				// TODO Auto-generated method stub
+				if (event.getEventType()==WindowEvent.WINDOW_CLOSE_REQUEST)
+				{
+					closeAll();
+				}
+				
+			}
+		});
+	}
 	/**
 	 * 
 	 * @return the server
@@ -68,6 +94,7 @@ public class SokobanController implements Observer {
 	 */
 	public void closeAll()
 	{
+		System.out.println("closing!!!");
 		this.controller.finishAllCommands();
 		this.ms.closeAllSockets();
 		this.mv.closeAllThreads();
@@ -106,6 +133,10 @@ public class SokobanController implements Observer {
 		else if(s[0].toLowerCase().compareTo("close")==0)
 		{
 			this.ms.closeAllSockets();
+		}
+		if (s[0].toLowerCase().compareTo("move")==0)
+		{
+			this.getMv().setDirection(s[1]);
 		}
 		if(!this.isFinish)
 		{		
@@ -166,10 +197,10 @@ public class SokobanController implements Observer {
 				this.isFinish=MM.getCurrentLevel().checkIfFinish();
 				mv.setDone(isFinish);
 				mv.setArr((MM.getCurrentLevel().toCharArray()));
-				if (isFinish)
+				if (MM.isChanged())
 				{
-					
-					
+					mv.setSteps(mv.getSteps()+1);
+					MM.setChanged(false);
 				}
 				ms.getCh().setIfHappend(true);
 			}
@@ -250,7 +281,7 @@ public class SokobanController implements Observer {
 
 	
 		
-	
+		
 		this.controller=new Controller();
 		
 		this.cF=new CommandsFactory();

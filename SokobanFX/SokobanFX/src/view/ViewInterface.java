@@ -9,6 +9,8 @@ public interface ViewInterface {
 	 * 
 	 * @return the user command
 	 */
+	public void setDirection(String s);
+	public String getDirection();
 	public String getUserCommand();
 	/**
 	 * close all opened threads
@@ -24,10 +26,16 @@ public interface ViewInterface {
 	 * @param step the new steps counter
 	 */
 	public void setSteps(int step);
-	/** update the furrent level
+	/**
+	 * 
+	 * @return the number of steps that made
+	 */
+	public int getSteps();
+	/** update the current level
 	 * 
 	 * @param arrupodated level array
 	 */
+	
 	public void setArr(char[][]arr);
 	/** update if the game end
 	 * 

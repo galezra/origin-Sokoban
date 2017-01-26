@@ -12,7 +12,7 @@ import java.net.SocketTimeoutException;
 
 public class MyServer   {
 	private MyClientHandler ch;
-	private int port=6677;
+	private int port;
 	private boolean stop=false;
 
 	/**

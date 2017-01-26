@@ -1,9 +1,7 @@
 package view;
 
 import java.util.Observable;
-import java.util.Observer;
 
-import Controler.SokobanController;
 import Model.Data.Level;
 
 public class MyView extends Observable implements ViewInterface {
@@ -61,6 +59,24 @@ public class MyView extends Observable implements ViewInterface {
 	public void setDone(boolean isDone) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public int getSteps()
+	{
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public void setDirection(String s)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public String getDirection()
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

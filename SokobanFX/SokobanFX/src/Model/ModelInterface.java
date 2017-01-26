@@ -18,4 +18,6 @@ public interface ModelInterface {
 	 */
 	public void setCurrentLevel(Level lev);
 
+	public boolean isChanged();
+	public void setChanged(boolean isChanged);
 }

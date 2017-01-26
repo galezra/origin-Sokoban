@@ -1,5 +1,6 @@
 package view;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -15,6 +16,7 @@ public class SokobanDisplayer extends Canvas  {
 	private boolean isDone=false;
 	private double cRow;
 	private double cCol;
+	private String direction;
 	private StringProperty wall;
 	private StringProperty box;
 	private StringProperty character;
@@ -23,6 +25,14 @@ public class SokobanDisplayer extends Canvas  {
 	private StringProperty open;
 	private StringProperty over;
 	
+	public String getDirection()
+	{
+		return direction;
+	}
+	public void setDirection(String direction)
+	{
+		this.direction = direction;
+	}
 	public boolean isDone() {
 		return isDone;
 	}
@@ -47,6 +57,7 @@ public class SokobanDisplayer extends Canvas  {
 	}
 	public void redraw()
 	{
+		
 		HashMap<Character,Image> HM=new HashMap<Character,Image>();
 		try {
 			HM.put('A', new Image(new FileInputStream(this.getCharacter())));
@@ -56,11 +67,18 @@ public class SokobanDisplayer extends Canvas  {
 			HM.put('o', new Image(new FileInputStream(this.getDestination())));
 			HM.put('X', new Image(new FileInputStream(this.getOpen())));
 			HM.put('D', new Image(new FileInputStream(this.getOver())));
+			HM.put('u', new Image(new FileInputStream(new File("./resources/Images/u.jpg"))));
+			HM.put('d', new Image(new FileInputStream(new File("./resources/Images/f.jpg"))));
+			HM.put('r', new Image(new FileInputStream(new File("./resources/Images/r.jpg"))));
+			HM.put('l', new Image(new FileInputStream(new File("./resources/Images/l.jpg"))));
+
 
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		int cI=0;
+		int cJ=0;
 		double W=getWidth();
 		double H=getHeight();
 		double w=W/cCol;
@@ -68,6 +86,7 @@ public class SokobanDisplayer extends Canvas  {
 		GraphicsContext gc=this.getGraphicsContext2D();
 		
 		Image A=null;
+		Image D=null;
 		if (this.levelData!=null)
 		{
 			gc.clearRect(0, 0, W, H);
@@ -88,11 +107,36 @@ public class SokobanDisplayer extends Canvas  {
 					{
 						
 						A=HM.get(this.levelData[i][j]);
+						if(this.levelData[i][j]=='A')
+						{
+							
+							
+								
+								if (this.getDirection()!=null)
+								{
+									A=HM.get(this.getDirection().charAt(0));
+									
+
+
+
+								}
+								else
+								{
+									A=HM.get(this.levelData[i][j]);
+								}
+
+							
+						
+
+						}
 						
 						gc.drawImage(A, j*w, i*h, w, h);
-						
+
 					}
+
+			
 			}
+			
 			
 		
 			
@@ -107,14 +151,17 @@ public class SokobanDisplayer extends Canvas  {
 	public char[][] getLevelData() {
 		return levelData;
 	}
-	public void setLevelData(char[][] levelData) {
-		if (levelData!=null)
+	public void setLevelData(char[][] levelData)
+	{
+		if(levelData!=null)
 		{
 			cCol=levelData[0].length;
 			cRow=levelData.length;
 			this.levelData = levelData;
 			
 		}
+		
+		
 		
 		this.redraw();
 	}

@@ -74,15 +74,23 @@ public class MoveCommand extends FunctionalCommand implements Command {
 			{
 				this.getLev().setInPlace(A, B.getPos());
 				this.getLev().setStepsCounter(this.getLev().getStepsCounter()+1);
+				this.getmM().setChanged(true);
 			}
 				
-			if (howManyMoves==2)
+			else if (howManyMoves==2)
 			{
+				this.getmM().setChanged(true);
+
 				temp=B.getPos();
 				this.getLev().setInPlace(B, C.getPos());
 				this.getLev().setInPlace(A, temp);
 				this.getLev().setStepsCounter(this.getLev().getStepsCounter()+1);
 				
+			}
+			else
+			{
+				this.getmM().setChanged(false);
+
 			}
 	
 			

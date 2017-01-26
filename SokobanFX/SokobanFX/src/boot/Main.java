@@ -7,6 +7,7 @@ import java.util.List;
 import Controler.SokobanController;
 import Model.MyModel;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -17,9 +18,16 @@ import view.MainWindowController;
 
 
 public class Main extends Application {
+
+	MediaPlayer m;
 	@Override
+	
 	public void start(Stage primaryStage) {
 		try {
+			String musicFile="./resources/Music/song.mp3";
+
+			Media song=new Media(new File(musicFile).toURI().toString());
+			this.m=new MediaPlayer(song);
 			FXMLLoader fl=new FXMLLoader();
 			BorderPane root = fl.load(getClass().getResource("MainWindow.fxml").openStream());
 			MainWindowController mwc=fl.getController();
@@ -33,6 +41,11 @@ public class Main extends Application {
 			sc.setMv(mwc);
 			sc.setMM(mm);
 			mm.addObserver(sc);
+			
+			sc.setMyStage(primaryStage);
+			
+			
+			
 			Thread serverThread=new Thread(new Runnable() {
 				
 				@Override
@@ -41,55 +54,47 @@ public class Main extends Application {
 					sc.runServer();
 				}
 			});
+			
 			Thread musicThread=new Thread(new Runnable() {
-						
+					
+
 						@Override
 						public void run() {
 							// TODO Auto-generated method stub
-							String musicFile="./resources/Music/song.mp3";
-
-							Media song=new Media(new File(musicFile).toURI().toString());
-							MediaPlayer mp=new MediaPlayer(song);
-							mp.cycleCountProperty().set(5);
-							mp.play();
+							
+							
+							m.cycleCountProperty().set(5);
+							m.play();
 							
 							
 						}
 					});
-			Thread GUIThread=new Thread(new Runnable()
+			//runs the gui
+			Platform.runLater(new Runnable()
 			{
 				
 				@Override
 				public void run()
 				{
 					// TODO Auto-generated method stub
-					
 					primaryStage.show();
-
 				}
 			});
+			
 			List<String> args=getParameters().getRaw();
 			if (args.size()>0)
 			{
 				String s=args.get(1);
 				int port=0;
 				int size=0;
-				while(size>s.length())
-				{
-					port=port*10+(s.charAt(size)-'0');
-							
-				}
+				port=Integer.parseInt(args.get(1));
+			
 				sc.getMs().setPort(port);
-				serverThread.start();
+			serverThread.start();
 			}
+			
+					
 			musicThread.start();
-			GUIThread.start();
-		
-			
-			
-			//serverThread.start();
-			//GUIThread.start();
-			//musicThread.start();
 			 
 			
 			  
@@ -102,11 +107,16 @@ public class Main extends Application {
 	}
 
 
+	public void stop()
+	{
+		
+	}
 	public static void main(String[] args) {
 
 		
 
 		launch(args);
+		
 
 	}
 }

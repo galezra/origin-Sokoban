@@ -37,7 +37,7 @@ public class MainWindowController extends Observable  implements Initializable,V
 	HashMap<String,String> hm;
 	@FXML
 	Text myText;
-	
+	Timer t;
 	
 
 
@@ -52,6 +52,8 @@ public class MainWindowController extends Observable  implements Initializable,V
 	public void setDone(boolean b)
 	{
 		this.sd.setDone(b);
+		if (b)
+			t.cancel();
 	}
 	public String getArrByString()
 	{
@@ -181,7 +183,7 @@ public class MainWindowController extends Observable  implements Initializable,V
 	{
 	
 		setCount(0);
-		Timer t=new  Timer();
+		t=new  Timer();
 		t.scheduleAtFixedRate(new TimerTask() {
 					
 					@Override
@@ -200,6 +202,7 @@ public class MainWindowController extends Observable  implements Initializable,V
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		t=new Timer();
 		this.setFocus();
 		
 		hm=new HashMap<String,String>();
@@ -318,7 +321,8 @@ public class MainWindowController extends Observable  implements Initializable,V
 	 {
 		String fileName= chosen.getName();
 		this.setUserCommand("load "+fileName);
-		 this.startCounter();
+		
+		startCounter();
 		 this.steps=0;
 
 
@@ -350,9 +354,24 @@ public class MainWindowController extends Observable  implements Initializable,V
 	}
 
 	public void setArr(char[][] arr) {
+		
 		this.arr = arr;
 		this.sd.setLevelData(arr);
 	}
+	@Override
+	public void setDirection(String s)
+	{
+		// TODO Auto-generated method stub
+		this.sd.setDirection(s);
+		
+	}
+	@Override
+	public String getDirection()
+	{
+		// TODO Auto-generated method stub
+		return this.sd.getDirection();
+	}
+	
 	
 
 

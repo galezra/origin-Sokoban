@@ -13,6 +13,16 @@ public class MyModel extends Observable implements ModelInterface {
 
 	private Level CurrentLevel;
 	private boolean isDone=false; 
+	private boolean isChanged=false;
+	
+	public boolean isChanged()
+	{
+		return isChanged;
+	}
+	public void setChanged(boolean isChanged)
+	{
+		this.isChanged = isChanged;
+	}
 	/**Update current level 
 	 * @param lev out source level
 	 */
