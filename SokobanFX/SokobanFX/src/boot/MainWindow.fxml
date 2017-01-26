@@ -56,7 +56,7 @@
                   <Font name="Arial Black" size="14.0" />
                </font>
             </Text>
-            
+
             <Text fx:id="myText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                <font>
                   <Font name="Arial Black" size="13.0" />
@@ -88,8 +88,8 @@
       <VBox prefHeight="500.0" prefWidth="233.0" BorderPane.alignment="CENTER" />
    </right>
    <center>
- <SokobanDisplayer fx:id="sd" height="500.0" width="500.0" BorderPane.alignment="CENTER" wall="./resources/Images/wall1.jpg"  character="./resources/Images/character1.png" box="./resources/Images/box.jpg" floor="./resources/Images/floor.jpg" destination="./resources/Images/destination.jpg" open="./resources/Images/open.jpg" over="./resources/Images/over.gif"  />
-      
+ <SokobanDisplayer fx:id="sd" height="500.0" width="500.0" BorderPane.alignment="CENTER" wall="./resources/Images/wall2.jpg"  character="./resources/Images/character1.png" box="./resources/Images/box2.jpg" floor="./resources/Images/floor.jpg" destination="./resources/Images/target2.jpg" open="./resources/Images/open.jpg" over="./resources/Images/over.gif"  />
+
    </center>
    <bottom>
       <Label text="Cart-Ban" BorderPane.alignment="CENTER">
