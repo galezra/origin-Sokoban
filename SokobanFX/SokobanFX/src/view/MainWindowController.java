@@ -1,17 +1,11 @@
 package view;
 
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-
-import java.awt.event.WindowEvent;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Observable;
@@ -19,26 +13,20 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.omg.CORBA.portable.OutputStream;
-
-import Controler.SokobanController;
-import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-
 import javafx.scene.text.Text;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
+/**Our view in the sokoban game
+ * 
+ * @author Sahar Mizrahi and Gal Ezra
+ *
+ */
 
 public class MainWindowController extends Observable  implements Initializable,ViewInterface{
 	@FXML	private SokobanDisplayer sd=new SokobanDisplayer();
@@ -84,6 +72,9 @@ public class MainWindowController extends Observable  implements Initializable,V
 	{
 		
 	}
+	/**
+	 * set the default keys(arrows)
+	 */
 	public void initializeDefaultKeys()
 	{
 		hm.put("UP", "move up");
@@ -92,6 +83,9 @@ public class MainWindowController extends Observable  implements Initializable,V
 		hm.put("RIGHT", "move right");
 
 	}
+	/**
+	 * set the keys to W S D A
+	 */
 	public void initializeLettersKeys()
 	{
 		hm.put("W", "move up");
@@ -99,6 +93,9 @@ public class MainWindowController extends Observable  implements Initializable,V
 		hm.put("A", "move left");
 		hm.put("D", "move right");
 	}
+	/**
+	 * set the keys to 8 6 4 2
+	 */
 	public void initializeNumbersKeys()
 	{
 		hm.put("8", "move up");
@@ -106,6 +103,9 @@ public class MainWindowController extends Observable  implements Initializable,V
 		hm.put("4", "move left");
 		hm.put("6", "move right");
 	}
+	/**
+	 * read the keys from the xml file.. the user can change it by changing the xml file from outside
+	 */
 	public void readKeysFromXML()
 	{
 		XMLDecoder xd;
@@ -122,6 +122,9 @@ public class MainWindowController extends Observable  implements Initializable,V
 		}
 		
 	}
+	/**
+	 * write the default keys to xml file
+	 */
 	public void writeDefaultKeysToXML()
 	{
 		try {
@@ -140,15 +143,18 @@ public class MainWindowController extends Observable  implements Initializable,V
 		
 		
 	}
-	public MainWindowController(){
 	
-	
-	}
+	/**
+	 * 
+	 * @return the number of steps the has done
+	 */
 	public int getSteps() {
 		return steps;
 	}
 
-
+	/**
+	 * set the focus
+	 */
 	public void setFocus()
 	{
 		Thread t=new Thread(new Runnable() {
@@ -162,12 +168,15 @@ public class MainWindowController extends Observable  implements Initializable,V
 		});
 		t.start();
 	}
+	
 	public void setSteps(int steps) {
 		this.steps = steps;
 		stepCounter.set(""+steps);
 
 	}
-
+	/**
+	 * start the seconds counter
+	 */
 	public void startCounter()
 	{
 	
@@ -180,7 +189,14 @@ public class MainWindowController extends Observable  implements Initializable,V
 						setCount(getCount()+1);
 					}
 				}, 0, 1000);
+		if (sd.isDone())
+		{
+			t.cancel();
+		}
 	}
+	/**
+	 * initalized all variables
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
@@ -228,27 +244,44 @@ public class MainWindowController extends Observable  implements Initializable,V
 
 
 	}
-
+	/**
+	 * 
+	 * @return the seconds count
+	 */
 	public int getCount() {
 		return count;
 	}
+	/**
+	 * 
+	 * @param count update the second count
+	 */
 	public void setCount(int count) {
 		this.count = count;
 		this.Counter.set(""+count);
 	}
+	
 	public String getUserCommand() {
 		return userCommand;
 	}
-
+	/**update the user command
+	 * 
+	 * @param userCommand the new user command
+	 */
 	public void setUserCommand(String userCommand) {
 		this.userCommand = userCommand;
 		this.setChanged();
 		this.notifyObservers(userCommand);
 	}
+	/**
+	 * exit the program by clicking on 'exit' button
+	 */
 	public void exit()
 	{
-		this.setUserCommand("exit");//without saving the game
+		this.setUserCommand("exit no");
 	}
+	/**
+	 * saving the level
+	 */
 	public void saveFileMethod()
 	{
 		if (arr!=null)
@@ -270,6 +303,9 @@ public class MainWindowController extends Observable  implements Initializable,V
 		
 
 	}
+	/**
+	 * loading new level
+	 */
 	public void loadFileMethod()
 	{
 
@@ -289,14 +325,24 @@ public class MainWindowController extends Observable  implements Initializable,V
 	 }
 
 	}
+	/**
+	 * .
+	 * @return the displayer of our level
+	 */
 	public SokobanDisplayer getSd() {
 		return sd;
 	}
-
+	/**
+	 * 
+	 * @param sd update the displayer
+	 */
 	public void setSd(SokobanDisplayer sd) {
 		this.sd = sd;
 	}
-
+	/**
+	 * 
+	 * @return our level in char array
+	 */
 	public char[][] getArr() {
 		if (arr!=null)
 			return arr;

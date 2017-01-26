@@ -2,9 +2,9 @@ package boot;
 
 
 import java.io.File;
+import java.util.List;
 
 import Controler.SokobanController;
-import Controller.Server.MyServer;
 import Model.MyModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -25,15 +25,12 @@ public class Main extends Application {
 			MainWindowController mwc=fl.getController();
 			SokobanController sc=new SokobanController();
 			MyModel mm=new MyModel();
-			
 			Scene scene = new Scene(root,650,650);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
-			
 			mwc.addObserver(sc);
 			sc.setMv(mwc);
-			
 			sc.setMM(mm);
 			mm.addObserver(sc);
 			Thread serverThread=new Thread(new Runnable() {
@@ -53,18 +50,49 @@ public class Main extends Application {
 
 							Media song=new Media(new File(musicFile).toURI().toString());
 							MediaPlayer mp=new MediaPlayer(song);
+							mp.cycleCountProperty().set(5);
 							mp.play();
+							
 							
 						}
 					});
-		
-			serverThread.start();
-			primaryStage.show();
+			Thread GUIThread=new Thread(new Runnable()
+			{
+				
+				@Override
+				public void run()
+				{
+					// TODO Auto-generated method stub
+					
+					primaryStage.show();
 
+				}
+			});
+			List<String> args=getParameters().getRaw();
+			if (args.size()>0)
+			{
+				String s=args.get(1);
+				int port=0;
+				int size=0;
+				while(size>s.length())
+				{
+					port=port*10+(s.charAt(size)-'0');
+							
+				}
+				sc.getMs().setPort(port);
+				serverThread.start();
+			}
+			musicThread.start();
+			GUIThread.start();
+		
+			
+			
+			//serverThread.start();
+			//GUIThread.start();
 			//musicThread.start();
+			 
 			
-			
-			
+			  
 			
 			
 			

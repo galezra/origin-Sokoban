@@ -1,18 +1,14 @@
 package view;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
-
-import javax.swing.text.html.HTMLDocument.HTMLReader.BlockAction;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 
 public class SokobanDisplayer extends Canvas  {
 	private char[][]levelData;
@@ -92,6 +88,7 @@ public class SokobanDisplayer extends Canvas  {
 					{
 						
 						A=HM.get(this.levelData[i][j]);
+						
 						gc.drawImage(A, j*w, i*h, w, h);
 						
 					}

@@ -1,17 +1,21 @@
 package Model;
 
 import java.util.Observable;
-import java.util.Observer;
 
-import Controler.SokobanController;
 import Model.Data.Level;
-
+/**implemets model interfce
+ * 
+ * @author Sahar Mizrahi and Gal Ezra
+ *
+ */
 public class MyModel extends Observable implements ModelInterface {
 
 
 	private Level CurrentLevel;
 	private boolean isDone=false; 
-	
+	/**Update current level 
+	 * @param lev out source level
+	 */
 	public void UpdateLevel(Level lev)
 	{
 		this.setCurrentLevel(lev);
@@ -20,15 +24,24 @@ public class MyModel extends Observable implements ModelInterface {
 		
 		
 	}
-	
+	/**check if the level is finish
+	 * 
+	 * @return true/false
+	 */
 	public boolean isDone() {
 		return isDone;
 	}
-
+	/**Sets the flag
+	 * 
+	 * @param isDone flag that refers if the level is done
+	 */
 	public void setDone(boolean isDone) {
 		this.isDone = isDone;
 	}
 
+	/**
+	 * default constructor
+	 */
 	public MyModel() {
 		
 		// TODO Auto-generated constructor stub
@@ -43,6 +56,7 @@ public class MyModel extends Observable implements ModelInterface {
 	public Level getCurrentLevel() {
 		return CurrentLevel;
 	}
+	
 	public void setCurrentLevel(Level currentLevel) {
 		CurrentLevel = currentLevel;
 		this.setDone(CurrentLevel.checkIfFinish());

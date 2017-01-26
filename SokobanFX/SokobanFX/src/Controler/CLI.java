@@ -12,7 +12,6 @@ public class CLI {
 	{
 		while (true)
 		{
-			System.out.println("Dfgfd");
 			CommandCreator cc;
 			FunctionalCommand FC;
 			Scanner sc=new Scanner(System.in);
