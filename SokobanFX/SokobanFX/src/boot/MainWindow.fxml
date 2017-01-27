@@ -42,6 +42,15 @@
                   <MenuItem mnemonicParsing="false" onAction="#initializeLettersKeys" text="Letters (W,D,S,A)" />
               </items>
             </Menu>
+            <Menu mnemonicParsing="false" text="Theme">
+              <items>
+                <MenuItem mnemonicParsing="false" text="SouthPark" />
+                  <MenuItem mnemonicParsing="false" text="SpongeBob" />
+                  <MenuItem mnemonicParsing="false" text="FamilyGuy" />
+                  <MenuItem mnemonicParsing="false" text="Pokemon" />
+                  <MenuItem mnemonicParsing="false" text="The Simpsons" />
+              </items>
+            </Menu>
         </menus>
       </MenuBar>
    </top>
@@ -88,7 +97,7 @@
       <VBox prefHeight="500.0" prefWidth="233.0" BorderPane.alignment="CENTER" />
    </right>
    <center>
- <SokobanDisplayer fx:id="sd" height="500.0" width="500.0" BorderPane.alignment="CENTER" wall="./resources/Images/wall2.jpg"  character="./resources/Images/character1.png" box="./resources/Images/box2.jpg" floor="./resources/Images/floor.jpg" destination="./resources/Images/target2.jpg" open="./resources/Images/open.jpg" over="./resources/Images/over.gif"  />
+<SokobanDisplayer fx:id="sd" height="500.0" width="500.0" BorderPane.alignment="CENTER" wall="./resources/Images/wall.jpg"  character="./resources/Images/f.jpg" box="./resources/Images/box.jpg" floor="./resources/Images/floor.jpg" destination="./resources/Images/target.jpg" open="./resources/Images/open.jpg" over="./resources/Images/over.gif"  />
 
    </center>
    <bottom>

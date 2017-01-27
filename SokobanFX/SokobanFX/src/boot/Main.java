@@ -21,11 +21,10 @@ public class Main extends Application {
 
 	MediaPlayer m;
 	@Override
-	
+
 	public void start(Stage primaryStage) {
 		try {
 			String musicFile="./resources/Music/song.mp3";
-
 			Media song=new Media(new File(musicFile).toURI().toString());
 			this.m=new MediaPlayer(song);
 			FXMLLoader fl=new FXMLLoader();
@@ -41,38 +40,38 @@ public class Main extends Application {
 			sc.setMv(mwc);
 			sc.setMM(mm);
 			mm.addObserver(sc);
-			
+
 			sc.setMyStage(primaryStage);
-			
-			
-			
+
+
+
 			Thread serverThread=new Thread(new Runnable() {
-				
+
 				@Override
 				public void run() {
 					// TODO Auto-generated method stub
 					sc.runServer();
 				}
 			});
-			
+
 			Thread musicThread=new Thread(new Runnable() {
-					
+
 
 						@Override
 						public void run() {
 							// TODO Auto-generated method stub
-							
-							
+
+
 							m.cycleCountProperty().set(5);
 							m.play();
-							
-							
+
+
 						}
 					});
 			//runs the gui
 			Platform.runLater(new Runnable()
 			{
-				
+
 				@Override
 				public void run()
 				{
@@ -80,7 +79,7 @@ public class Main extends Application {
 					primaryStage.show();
 				}
 			});
-			
+
 			List<String> args=getParameters().getRaw();
 			if (args.size()>0)
 			{
@@ -88,35 +87,26 @@ public class Main extends Application {
 				int port=0;
 				int size=0;
 				port=Integer.parseInt(args.get(1));
-			
+
 				sc.getMs().setPort(port);
 			serverThread.start();
 			}
-			
-					
 			musicThread.start();
-			 
-			
-			  
-			
-			
-			
+
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
-
-
 	public void stop()
 	{
-		
+
 	}
 	public static void main(String[] args) {
 
-		
+
 
 		launch(args);
-		
+
 
 	}
 }
